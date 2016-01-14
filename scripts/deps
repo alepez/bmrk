@@ -1,0 +1,33 @@
+#!/bin/bash
+
+PRJ_DIR=$(pwd)
+
+DEPS_DIR=${PRJ_DIR}/deps
+DEPS_ROOT_DIR=${DEPS_DIR}/root
+DEPS_SRC_DIR=${DEPS_DIR}/src
+
+function gumbo_parser() {
+  test -e ${DEPS_ROOT_DIR}/lib/libgumbo.a && return
+  git clone https://github.com/google/gumbo-parser \
+    ${DEPS_SRC_DIR}/gumbo-parser
+  cd ${DEPS_SRC_DIR}/gumbo-parser \
+    && ./autogen.sh \
+    && ./configure --prefix=${DEPS_ROOT_DIR} \
+    && make \
+    && make install
+}
+
+function gumbo_query() {
+  git clone https://github.com/Falven/gumbo-query \
+    ${DEPS_SRC_DIR}/gumbo-query
+  cd ${DEPS_SRC_DIR}/gumbo-query/build \
+    && cmake .. -DCMAKE_INSTALL_PREFIX:PATH=${DEPS_ROOT_DIR} \
+    && make
+}
+
+mkdir -p ${DEPS_SRC_DIR}
+mkdir -p ${DEPS_ROOT_DIR}
+cd ${DEPS_SRC_DIR}
+
+gumbo_parser
+gumbo_query
