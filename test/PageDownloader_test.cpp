@@ -5,7 +5,6 @@
 TEST(PageDownloaderTest, CanDownloadPage) {
 	std::string url = "http://pezzato.net";
 	PageDownloader downloader;
-	downloader.load(url, [](std::string body) {
-
-	});
+    std::string body = downloader.load(url);
+    ASSERT_GT(body.length(), 0);
 }

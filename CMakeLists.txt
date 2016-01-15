@@ -18,7 +18,8 @@ include_directories("deps/root/include")
 # Libraries
 find_library(GUMBO libgumbo.a)
 find_library(GUMBO_QUERY libgumbo_query_static.a)
-set(LINK_LIBS ${GUMBO_QUERY} ${GUMBO})
+find_package(CURL REQUIRED)
+set(LINK_LIBS ${GUMBO_QUERY} ${GUMBO} ${CURL_LIBRARIES})
 
 # Subdirectories
 add_subdirectory(src)

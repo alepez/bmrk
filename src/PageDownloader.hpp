@@ -7,7 +7,7 @@
 class PageDownloader {
 public:
 	PageDownloader();
-	void load(const std::string& url, std::function<void(std::string)>);
+    std::string load(const std::string& url);
 private:
     const std::string url_;
 };
