@@ -8,11 +8,17 @@ project(${PRJ_NAME})
 set(PRJ_TYPE_EXECUTABLE 1)
 set(PRJ_BUILD_LIBRARY 1)
 
-set(LINK_LIBS  "gumbo_query_static" "gumbo")
 set(CXXFLAGS "-std=c++11")
 
-link_directories("deps/root/lib")
+# How to find third party libraries
+set(CMAKE_PREFIX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/deps/root)
 include_directories("deps/root/include")
 
+# Libraries
+find_library(GUMBO libgumbo.a)
+find_library(GUMBO_QUERY libgumbo_query_static.a)
+set(LINK_LIBS ${GUMBO_QUERY} ${GUMBO})
+
+# Subdirectories
 add_subdirectory(src)
 add_subdirectory(test)
