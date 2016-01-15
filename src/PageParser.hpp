@@ -2,6 +2,9 @@
 #define PAGEPARSER_HPP_GUTITDEQ
 
 #include <string>
+#include <memory>
+
+class CDocument;
 
 class PageParser {
 public:
@@ -10,7 +13,7 @@ public:
   std::string getTitle() const;
 
 private:
-  std::string html_;
+  std::shared_ptr<CDocument> doc_;
 };
 
 #endif /* end of include guard: PAGEPARSER_HPP_GUTITDEQ */
