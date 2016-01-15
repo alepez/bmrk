@@ -8,7 +8,7 @@ add_definitions("${CXXFLAGS}")
 
 include_directories(".")
 
-target_link_libraries(${PRJ_NAME} "gumbo_query_static" "gumbo")
+target_link_libraries(${PRJ_NAME} ${LINK_LIBS})
 
 foreach(filename ${SOURCES})
   if(NOT "${filename}" MATCHES "main.cpp")
