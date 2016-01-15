@@ -21,8 +21,14 @@ function gumbo_query() {
   git clone https://github.com/Falven/gumbo-query \
     ${DEPS_SRC_DIR}/gumbo-query
   cd ${DEPS_SRC_DIR}/gumbo-query/build \
-    && cmake .. -DCMAKE_INSTALL_PREFIX:PATH=${DEPS_ROOT_DIR} \
-    && make
+    && cmake .. -DCMAKE_INSTALL_PREFIX=${DEPS_ROOT_DIR} \
+        -DGumbo_LIBRARY=${DEPS_ROOT_DIR}/lib/libgumbo.so \
+    && make || return
+  mkdir -p ${DEPS_ROOT_DIR}/include/gumbo-query
+  find ${DEPS_SRC_DIR}/gumbo-query -name '*.h' \
+    -exec cp {} ${DEPS_ROOT_DIR}/include/gumbo-query \;
+  cp ${DEPS_SRC_DIR}/gumbo-query/lib/lib* \
+    ${DEPS_ROOT_DIR}/lib/
 }
 
 mkdir -p ${DEPS_SRC_DIR}
