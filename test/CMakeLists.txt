@@ -8,11 +8,10 @@ add_test(unit_tests unit_tests)
 
 add_definitions("${CXXFLAGS}")
 
-include_directories(. ../src)
-include_directories(${INCLUDE_DIR})
+include_directories("." "../src")
 
-link_libraries("${LINK_LIBS}")
-link_libraries("${PRJ_NAME}-static")
+target_link_libraries(unit_tests "${PRJ_NAME}-static")
+target_link_libraries(unit_tests "gumbo_query_static" "gumbo")
 
 # GTest
 find_package(GTest REQUIRED)
