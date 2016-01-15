@@ -1,7 +1,6 @@
 #ifndef PAGEDOWNLOADER_HPP_R1YIYM0U
 #define PAGEDOWNLOADER_HPP_R1YIYM0U
 
-#include <functional>
 #include <string>
 #include <future>
 
