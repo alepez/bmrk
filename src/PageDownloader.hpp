@@ -3,11 +3,12 @@
 
 #include <functional>
 #include <string>
+#include <future>
 
 class PageDownloader {
 public:
 	PageDownloader();
-    std::string load(const std::string& url);
+    std::future<std::string> load(const std::string& url);
 private:
     const std::string url_;
 };
