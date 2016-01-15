@@ -34,9 +34,6 @@ template <typename T> void downloadToStreamWithCurl(const std::string& url, T* s
 
 } // end namespace
 
-PageDownloader::PageDownloader() {
-}
-
 std::future<std::string> PageDownloader::load(const std::string& url) {
 	auto handle = std::async(std::launch::async, [url]() {
 		std::stringstream stream;
