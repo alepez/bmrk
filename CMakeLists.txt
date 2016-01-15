@@ -23,3 +23,6 @@ set(LINK_LIBS ${GUMBO_QUERY} ${GUMBO})
 # Subdirectories
 add_subdirectory(src)
 add_subdirectory(test)
+
+# This is needed to run tests with `make test`
+enable_testing()

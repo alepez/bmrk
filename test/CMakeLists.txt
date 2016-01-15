@@ -15,4 +15,5 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 target_link_libraries(unit_tests ${GTEST_BOTH_LIBRARIES})
 
+# This is needed to build tests
 enable_testing()
