@@ -3,8 +3,8 @@
 #include <gumbo-query/Node.h>
 #include <gumbo-query/Document.h>
 
-PageParser::PageParser(const std::string& html) {
-	doc_.reset(new CDocument);
+PageParser::PageParser(const std::string& html)
+		: doc_{new CDocument} {
 	doc_->parse(html.c_str());
 }
 
