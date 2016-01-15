@@ -18,6 +18,7 @@ function gumbo_parser() {
 }
 
 function gumbo_query() {
+  test -e ${DEPS_ROOT_DIR}/lib/libgumbo_quert_static.a && return
   git clone https://github.com/Falven/gumbo-query \
     ${DEPS_SRC_DIR}/gumbo-query
   cd ${DEPS_SRC_DIR}/gumbo-query/build \
