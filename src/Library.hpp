@@ -6,9 +6,10 @@
 class Library {
 public:
 	void add(BookmarkPtr);
+	const Bookmarks& getAllBookmarks() const;
 
 private:
-	std::vector<BookmarkPtr> bookmarks_;
+	Bookmarks bookmarks_;
 };
 
 #endif /* end of include guard: LIBRARY_HPP_AZX093RT */
