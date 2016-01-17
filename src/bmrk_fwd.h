@@ -1,6 +1,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <functional>
 
 class Bookmark;
 class PageDownloader;
@@ -12,3 +13,6 @@ using Bookmarks = std::vector<BookmarkPtr>;
 
 using Tag = std::string;
 using Tags = std::vector<Tag>;
+
+using ExplicitFilter = std::function<Bookmarks(Bookmarks)>;
+using Filter = std::function<bool(BookmarkPtr)>;

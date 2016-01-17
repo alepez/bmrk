@@ -6,7 +6,9 @@
 class Library {
 public:
 	void add(BookmarkPtr);
-	const Bookmarks& getAllBookmarks() const;
+	Bookmarks getAll() const;
+	Bookmarks filter(ExplicitFilter) const;
+	Bookmarks filter(Filter) const;
 
 private:
 	Bookmarks bookmarks_;
