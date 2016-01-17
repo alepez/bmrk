@@ -3,8 +3,8 @@
 #include <Bookmark.hpp>
 #include <memory>
 
-BookmarkPtr
-bm(std::string url, std::string title, std::string notes, Tags tags) {
+BookmarkPtr bm(
+		std::string url, std::string title, std::string notes, Tags tags) {
 	return BookmarkPtr{new Bookmark{url, title, notes, tags}};
 }
 
@@ -12,9 +12,9 @@ struct LibraryTest : public testing::Test {
 	Library library;
 	void SetUp() {
 		library.add(bm("http://pezzato.net",
-									 "Alessandro Pezzato",
-									 "That guy who created bmrk",
-									 Tags{}));
+				"Alessandro Pezzato",
+				"That guy who created bmrk",
+				Tags{}));
 	}
 };
 
@@ -32,15 +32,11 @@ TEST_F(LibraryTest, CanFilterExplicit) {
 }
 
 TEST_F(LibraryTest, CanFilterImplicit) {
-	auto bookmarks = library.filter([](BookmarkPtr) {
-		return true;
-	});
+	auto bookmarks = library.filter([](BookmarkPtr) { return true; });
 	ASSERT_EQ(library.getAll().size(), bookmarks.size());
 }
 
 TEST_F(LibraryTest, CanFilterImplicit2) {
-	auto bookmarks = library.filter([](BookmarkPtr) {
-		return false;
-	});
+	auto bookmarks = library.filter([](BookmarkPtr) { return false; });
 	ASSERT_EQ(0u, bookmarks.size());
 }
