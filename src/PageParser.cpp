@@ -5,9 +5,16 @@
 
 PageParser::PageParser(const std::string& html)
 		: doc_{new CDocument} {
+	if (html.empty()) {
+		throw std::runtime_error{"Empty document"};
+	}
 	doc_->parse(html.c_str());
 }
 
 std::string PageParser::getTitle() const {
-	return doc_->find("head title").nodeAt(0).text();
+	auto&& node = doc_->find("head title").nodeAt(0);
+	if (!node.valid()) {
+		throw std::runtime_error{"Cannot parse title"};
+	}
+	return node.text();
 }

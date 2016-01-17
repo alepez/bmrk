@@ -34,7 +34,7 @@ void downloadToStreamWithCurl(const std::string& url, T* stream) {
 
 } // end namespace
 
-std::future<std::string> PageDownloader::load(const std::string& url) {
+std::future<std::string> PageDownloader::load(const std::string& url) const {
 	return std::async(std::launch::async, [url]() {
 		std::stringstream stream;
 		downloadToStreamWithCurl(url, &stream);

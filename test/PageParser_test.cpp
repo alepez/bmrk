@@ -7,3 +7,12 @@ TEST(PageParserTest, CanParseTitle) {
 	PageParser parser{html};
 	ASSERT_EQ("This is a title", parser.getTitle());
 }
+
+TEST(PageParserTest, ThrowsWithInvalidDocument) {
+	PageParser parser{"<html></dasd>"};
+	ASSERT_ANY_THROW(parser.getTitle());
+}
+
+TEST(PageParserTest, ThrowsWithEmptyDocument) {
+	ASSERT_ANY_THROW([]() { PageParser parser{""}; }());
+}
