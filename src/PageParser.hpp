@@ -10,10 +10,10 @@ class PageParser {
 public:
 	PageParser(const std::string& html);
 
-  std::string getTitle() const;
+	std::string getTitle() const;
 
 private:
-  std::shared_ptr<CDocument> doc_;
+	std::shared_ptr<CDocument> doc_;
 };
 
 #endif /* end of include guard: PAGEPARSER_HPP_GUTITDEQ */
