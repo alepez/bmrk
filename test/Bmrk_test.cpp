@@ -9,7 +9,6 @@ public:
 	PageDownloaderMock(const std::string& html)
 			: html_{html} {};
 	std::future<std::string> load(const std::string& url) const override {
-		std::cerr << "PageDownloaderMock\n";
 		return std::async(std::launch::async, [url, this]() -> std::string { return html_; });
 	}
 
@@ -18,7 +17,7 @@ private:
 };
 
 struct BmrkTest : public testing::Test {
-	PageDownloaderPtr downloader{new PageDownloaderMock("<body><head><title>ciao</title></head></body>")};
+	PageDownloaderPtr downloader{new PageDownloaderMock("<html><head><title>ciao</title></head><body></body></html>")};
 	Bmrk bmrk{downloader};
 };
 
