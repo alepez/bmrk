@@ -16,12 +16,12 @@ private:
 	std::string html_;
 };
 
-PageDownloaderPtr makePageDownloaderMock(const std::string& html) {
+PageDownloaderPtr dwl(const std::string& html) {
 	return PageDownloaderPtr{new PageDownloaderMock(html)};
 }
 
 struct BmrkTest : public testing::Test {
-	Bmrk bmrk{makePageDownloaderMock("<html><head><title>ciao</title></head><body></body></html>")};
+	Bmrk bmrk{dwl("<html><head><title>ciao</title></head><body></body></html>")};
 };
 
 TEST_F(BmrkTest, CanGetBookmarkFromUrl) {
