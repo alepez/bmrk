@@ -1,5 +1,18 @@
-all:
-	@mkdir -p build && cd build && cmake .. && make all
+default: all
+.PHONY: default
+
+all: build/CMakeCache.txt
+	@cd build && make all
+.PHONY: all
+
+build/CMakeCache.txt: CMakeLists.txt
+	@mkdir -p build
+	@cd build && cmake ..
 
 test: all
-	@cd build && make test
+	@./build/test/unit_tests
+.PHONY: test
+
+distclean:
+	@rm -rf build/*
+.PHONY: distclean
