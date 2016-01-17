@@ -33,6 +33,13 @@ TEST_F(LibraryTest, CanFilterExplicit) {
 
 TEST_F(LibraryTest, CanFilterImplicit) {
 	auto bookmarks = library.filter([](BookmarkPtr) {
+		return true;
+	});
+	ASSERT_EQ(library.getAll().size(), bookmarks.size());
+}
+
+TEST_F(LibraryTest, CanFilterImplicit2) {
+	auto bookmarks = library.filter([](BookmarkPtr) {
 		return false;
 	});
 	ASSERT_EQ(0u, bookmarks.size());
