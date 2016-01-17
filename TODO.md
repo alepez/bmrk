@@ -5,7 +5,7 @@
  - parse html with [gumbo-parser](https://github.com/google/gumbo-parser)
  - data structures
  - data persistence
- - fuzzy search
+ - fuzzy search (soundex etc...)
  - webserver with [proxygen](https://github.com/facebook/proxygen)
 
 ## frontend
