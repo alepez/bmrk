@@ -1,3 +1,4 @@
+#include <map>
 #include <memory>
 #include <string>
 #include <vector>
@@ -16,3 +17,5 @@ using Tags = std::vector<Tag>;
 
 using ExplicitFilter = std::function<Bookmarks(Bookmarks)>;
 using Filter = std::function<bool(BookmarkPtr)>;
+
+using Config = std::map<std::string, std::string>;
