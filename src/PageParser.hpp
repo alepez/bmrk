@@ -6,10 +6,19 @@
 
 class CDocument;
 
+/**
+ * Parse html string and get info from it
+ */
 class PageParser {
 public:
+	/**
+	 * \param html the page's html
+	 */
 	PageParser(const std::string& html);
 
+	/**
+	 * \return the page's title
+	 */
 	std::string getTitle() const;
 
 private:

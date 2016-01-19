@@ -3,12 +3,32 @@
 
 #include "bmrk_fwd.h"
 
+/**
+ * Keeps all the bookmarks and filter them
+ */
 class Library {
 public:
+	/**
+	 * Add a bookmark
+	 */
 	void add(BookmarkPtr);
+
+	/**
+	 * \return all the bookmarks
+	 */
 	Bookmarks getAll() const;
-	Bookmarks filter(ExplicitFilter) const;
-	Bookmarks filter(Filter) const;
+
+	/**
+	 * \return filtered bookmarks
+	 * \param filter a function that accept Bookmarks and return Bookmarks
+	 */
+	Bookmarks filter(ExplicitFilter filter) const;
+
+	/**
+	 * \return filtered bookmarks
+	 * \param filter a function that accept Bookmark and return bool
+	 */
+	Bookmarks filter(Filter filter) const;
 
 private:
 	Bookmarks bookmarks_;

@@ -4,8 +4,14 @@
 #include <string>
 #include <future>
 
+/**
+ * Download a document from a remote url
+ */
 class PageDownloader {
 public:
+	/**
+	 * \return a future with the downloaded document
+	 */
 	virtual std::future<std::string> load(const std::string& url) const;
 };
 
