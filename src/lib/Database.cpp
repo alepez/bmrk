@@ -47,6 +47,7 @@ BookmarkPtr Database::read(std::istream& stream) const {
 
 void Database::remove(const BookmarkPtr& bookmark) {
 	auto path = this->getAbsolutePath(this->getPath(*bookmark));
+	fs::remove(fs::path(path));
 }
 
 template <typename B, typename T>
