@@ -1,9 +1,13 @@
 #include "Database.hpp"
 #include "Bookmark.hpp"
 #include <fstream>
+#include <boost/filesystem.hpp>
+
+namespace fs = boost::filesystem;
 
 Database::Database(const Config& config)
 		: root_{config.at("root")} {
+	this->setupDirectory();
 }
 
 void Database::add(const BookmarkPtr& bookmark) {
@@ -16,7 +20,6 @@ void Database::write(std::ostream& stream, const BookmarkPtr& bookmark) {
 	stream << bookmark->url << '\n';
 	stream << bookmark->title << '\n';
 	stream << bookmark->notes << '\n';
-
 	auto&& tags = bookmark->tags;
 	for (unsigned i = 0; i < tags.size(); ++i) {
 		stream << (i ? "," : "") << tags[i];
@@ -41,4 +44,11 @@ std::string Database::getPath(const Bookmark& bookmark) {
 
 std::string Database::getAbsolutePath(const std::string& path) {
 	return root_ + "/" + path;
+}
+
+void Database::setupDirectory() {
+	fs::path root{root_};
+	if (!fs::exists(root)) {
+		fs::create_directories(root);
+	}
 }

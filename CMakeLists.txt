@@ -21,7 +21,16 @@ find_library(GUMBO libgumbo.a)
 find_library(GUMBO_QUERY libgumbo_query_static.a)
 find_package(CURL REQUIRED)
 find_package(OpenSSL REQUIRED)
-set(LINK_LIBS ${GUMBO_QUERY} ${GUMBO} ${CURL_LIBRARIES} ${OPENSSL_LIBRARIES})
+find_package(Boost REQUIRED COMPONENTS filesystem system)
+
+set(LINK_LIBS
+	${GUMBO_QUERY}
+	${GUMBO}
+	${CURL_LIBRARIES}
+	${OPENSSL_LIBRARIES}
+	${Boost_FILESYSTEM_LIBRARY}
+	${Boost_SYSTEM_LIBRARY}
+)
 
 # Subdirectories
 add_subdirectory(src/lib)

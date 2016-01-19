@@ -23,6 +23,7 @@ public:
 	void write(std::ostream&, const BookmarkPtr&);
 
 private:
+	void setupDirectory();
 	const std::string root_;
 };
 
