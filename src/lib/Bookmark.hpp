@@ -8,7 +8,7 @@ public:
 	static std::string getID(const std::string& url);
 
 	template <typename U, typename T, typename N, typename S>
-	Bookmark(U&& aurl, T&& atitle, N&& anotes, S&& atags)
+	inline Bookmark(U&& aurl, T&& atitle, N&& anotes, S&& atags)
 			: url{aurl}
 			, title{atitle}
 			, notes{anotes}

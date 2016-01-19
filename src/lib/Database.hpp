@@ -12,9 +12,15 @@ public:
 
 	void add(const BookmarkPtr&);
 
+	void remove(const BookmarkPtr&);
+
+	Bookmarks getAllBookmarks() const;
+
 	std::string getPath(const Bookmark&);
 
 	std::string getAbsolutePath(const std::string&);
+
+	void write(std::ostream&, const BookmarkPtr&);
 
 private:
 	const std::string root_;
