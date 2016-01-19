@@ -5,10 +5,11 @@
 #include <functional>
 
 class Bookmark;
-
+class Database;
 class PageDownloader;
 class PageParser;
 
+using DatabasePtr = std::shared_ptr<Database>;
 using BookmarkPtr = std::shared_ptr<const Bookmark>;
 using PageDownloaderPtr = std::shared_ptr<const PageDownloader>;
 using Bookmarks = std::vector<BookmarkPtr>;

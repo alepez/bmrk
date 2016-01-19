@@ -12,6 +12,11 @@ public:
 	 * Add a bookmark
 	 */
 	void add(BookmarkPtr);
+	/**
+	 *
+	 * Remove a bookmark
+	 */
+	void remove(BookmarkPtr);
 
 	/**
 	 * \return all the bookmarks
@@ -30,8 +35,15 @@ public:
 	 */
 	Bookmarks filter(Filter filter) const;
 
+	/**
+	 * connect to a database
+	 * \param db the database
+	 */
+	void connect(const DatabasePtr& db);
+
 private:
 	Bookmarks bookmarks_;
+	DatabasePtr db_;
 };
 
 #endif /* end of include guard: LIBRARY_HPP_AZX093RT */

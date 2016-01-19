@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <Library.hpp>
+#include <Database.hpp>
 #include <Bookmark.hpp>
 #include <memory>
 #include "helpers.hpp"
@@ -32,4 +33,9 @@ TEST_F(LibraryTest, CanFilterImplicit) {
 TEST_F(LibraryTest, CanFilterImplicit2) {
 	auto bookmarks = library.filter([](BookmarkPtr) { return false; });
 	ASSERT_EQ(0u, bookmarks.size());
+}
+
+TEST_F(LibraryTest, CanConnectToDatabase) {
+	auto db = std::make_shared<Database>(Config({{"root", "tmp/db"}}));
+	library.connect(db);
 }
