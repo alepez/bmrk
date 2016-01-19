@@ -37,21 +37,9 @@ function gumbo_query {
     ${DEPS_ROOT_DIR}/lib/
 }
 
-function folly {
-  test -e ${DEPS_ROOT_DIR}/lib/libgumbo_quert_static.a && return
-  git clone https://github.com/facebook/folly.git --depth=1 \
-    ${DEPS_SRC_DIR}/folly || die "cannot download folly"
-  cd ${DEPS_SRC_DIR}/folly/folly || die "error downloading folly sources"
-  autoreconf -ivf || die "error configuring folly"
-  ./configure --prefix=${DEPS_ROOT_DIR} || die "error configuring folly"
-  make || die "error building folly"
-  make install || die "error building folly"
-}
-
 mkdir -p ${DEPS_SRC_DIR}
 mkdir -p ${DEPS_ROOT_DIR}
 cd ${DEPS_SRC_DIR}
 
 ( gumbo_parser )
 ( gumbo_query )
-( folly )
