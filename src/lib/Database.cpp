@@ -28,13 +28,46 @@ void Database::write(std::ostream& stream, const BookmarkPtr& bookmark) {
 	stream << bookmark->notes << '\n';
 }
 
+BookmarkPtr Database::read(std::istream& stream) const {
+	std::string url, title, notes, buf;
+	Tags tags;
+	std::getline(stream, url);
+	std::getline(stream, title);
+
+	/* tags */
+	std::getline(stream, buf);
+
+	/* notes */
+	while (std::getline(stream, buf)) {
+		notes += buf;
+	}
+
+	return std::make_shared<Bookmark>(url, title, tags, notes);
+}
+
 void Database::remove(const BookmarkPtr& bookmark) {
 	auto path = this->getAbsolutePath(this->getPath(*bookmark));
 }
 
+template <typename B, typename T>
+void recursiveFindBookmarkFiles(B& bookmarks, T dir) {
+	for (auto&& l : fs::directory_iterator(dir)) {
+		if (fs::is_directory(l)) {
+			recursiveFindBookmarkFiles(bookmarks, l);
+		} else {
+			bookmarks.push_back(l.path().c_str());
+		}
+	}
+}
+
 Bookmarks Database::getAllBookmarks() const {
 	Bookmarks bookmarks;
-
+	std::vector<std::string> bookmarkFiles;
+	recursiveFindBookmarkFiles(bookmarkFiles, fs::path(root_));
+	for (auto&& f : bookmarkFiles) {
+		std::ifstream file{f};
+		bookmarks.push_back(this->read(file));
+	}
 	return bookmarks;
 }
 

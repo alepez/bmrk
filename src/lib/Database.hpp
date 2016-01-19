@@ -22,6 +22,8 @@ public:
 
 	void write(std::ostream&, const BookmarkPtr&);
 
+	BookmarkPtr read(std::istream&) const;
+
 private:
 	void setupDirectory();
 	const std::string root_;
