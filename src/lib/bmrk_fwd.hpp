@@ -5,6 +5,7 @@
 #include <functional>
 
 class Bookmark;
+
 class PageDownloader;
 class PageParser;
 
