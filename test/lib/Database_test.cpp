@@ -23,10 +23,10 @@ TEST_F(DatabaseTest, GetPath) {
 }
 
 TEST_F(DatabaseTest, CanWriteBookmark) {
-	auto bookmark = createMockBookmark("http://pezzato.net", "one", "two", Tags{{"foo","bar"}});
+	auto bookmark = createMockBookmark("http://pezzato.net", "one", "two", Tags({"foo","bar"}));
 	std::stringstream stream;
 	db.write(stream, bookmark);
-	ASSERT_EQ("http://pezzato.net\none\ntwo\nfoo,bar,", stream.str());
+	ASSERT_EQ("http://pezzato.net\none\ntwo\nfoo,bar\n", stream.str());
 }
 
 TEST_F(DatabaseTest, CanAddBookmark) {
@@ -35,7 +35,7 @@ TEST_F(DatabaseTest, CanAddBookmark) {
 	ASSERT_EQ(1u, db.getAllBookmarks().size());
 }
 
-TEST_F(DatabaseTest, DISABLED_CanRemoveBookmark) {
+TEST_F(DatabaseTest, CanRemoveBookmark) {
 	auto bookmark = createMockBookmark("http://pezzato.net");
 	db.add(bookmark);
 	ASSERT_EQ(1u, db.getAllBookmarks().size());

@@ -16,8 +16,10 @@ void Database::write(std::ostream& stream, const BookmarkPtr& bookmark) {
 	stream << bookmark->url << '\n';
 	stream << bookmark->title << '\n';
 	stream << bookmark->notes << '\n';
-	for (auto&& tag : bookmark->tags) {
-		stream << tag << ',';
+
+	auto&& tags = bookmark->tags;
+	for (unsigned i = 0; i < tags.size(); ++i) {
+		stream << (i ? "," : "") << tags[i];
 	}
 	stream << '\n';
 }
