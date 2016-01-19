@@ -1,7 +1,7 @@
 #ifndef DATABASE_HPP_AR2QUN8L
 #define DATABASE_HPP_AR2QUN8L
 
-#include "bmrk_fwd.h"
+#include "bmrk_fwd.hpp"
 
 class Database {
 public:

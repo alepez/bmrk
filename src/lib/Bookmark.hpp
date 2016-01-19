@@ -1,7 +1,7 @@
 #ifndef BOOKMARK_HPP_4NOOTDNA
 #define BOOKMARK_HPP_4NOOTDNA
 
-#include "bmrk_fwd.h"
+#include "bmrk_fwd.hpp"
 
 struct Bookmark {
 	const std::string url;

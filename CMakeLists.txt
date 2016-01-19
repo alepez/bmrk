@@ -7,7 +7,7 @@ project(${PRJ_NAME})
 
 set(PRJ_BUILD_EXECUTABLE 1)
 set(PRJ_BUILD_STATIC_LIBRARY 1)
-set(PRJ_BUILD_SHARED_LIBRARY 1)
+set(PRJ_BUILD_SHARED_LIBRARY 0)
 
 set(CXXFLAGS "-std=c++11")
 
@@ -22,8 +22,11 @@ find_package(CURL REQUIRED)
 set(LINK_LIBS ${GUMBO_QUERY} ${GUMBO} ${CURL_LIBRARIES})
 
 # Subdirectories
-add_subdirectory(src)
-add_subdirectory(test)
+add_subdirectory(src/lib)
+add_subdirectory(test/lib)
+
+# FIXME add_subdirectory(src/cli)
+# FIXME add_subdirectory(test/cli)
 
 # This is needed to run tests with `make test`
 enable_testing()

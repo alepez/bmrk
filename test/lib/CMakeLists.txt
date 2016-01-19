@@ -5,7 +5,7 @@ add_test(unit_tests unit_tests)
 
 add_definitions("${CXXFLAGS}")
 
-include_directories("." "../src")
+include_directories("." "../../src/lib")
 
 target_link_libraries(unit_tests "${PRJ_NAME}-static" ${LINK_LIBS})
 target_link_libraries(unit_tests ${LINK_LIBS})

@@ -2,7 +2,7 @@
 #define BMRK_HPP_0Q6IB5LJ
 
 #include <string>
-#include "bmrk_fwd.h"
+#include "bmrk_fwd.hpp"
 #include <future>
 
 /**

@@ -1,7 +1,7 @@
 #ifndef LIBRARY_HPP_AZX093RT
 #define LIBRARY_HPP_AZX093RT
 
-#include "bmrk_fwd.h"
+#include "bmrk_fwd.hpp"
 
 /**
  * Keeps all the bookmarks and filter them
