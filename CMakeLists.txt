@@ -36,7 +36,7 @@ set(LINK_LIBS
 add_subdirectory(src/lib)
 add_subdirectory(test/lib)
 
-# FIXME add_subdirectory(src/cli)
+add_subdirectory(src/cli)
 # FIXME add_subdirectory(test/cli)
 
 # This is needed to run tests with `make test`

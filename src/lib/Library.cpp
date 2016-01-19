@@ -2,10 +2,12 @@
 #include "Database.hpp"
 #include <algorithm>
 #include "Bookmark.hpp"
+#include <iostream>
 
 void Library::add(BookmarkPtr bookmark) {
 	bookmarks_.push_back(bookmark);
 	if (db_) {
+		std::cerr << "adding...\n";
 		db_->add(bookmark);
 	}
 }
@@ -43,6 +45,6 @@ Bookmarks Library::filter(Filter filter) const {
 	return filtered;
 }
 
-void Library::connect(const DatabasePtr& db) {
+void Library::connect(DatabasePtr db) {
 	db_ = db;
 }

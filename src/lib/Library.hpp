@@ -39,7 +39,7 @@ public:
 	 * connect to a database
 	 * \param db the database
 	 */
-	void connect(const DatabasePtr& db);
+	void connect(DatabasePtr db);
 
 private:
 	Bookmarks bookmarks_;

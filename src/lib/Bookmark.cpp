@@ -1,4 +1,5 @@
 #include "Bookmark.hpp"
+#include <boost/algorithm/string.hpp>
 #include <openssl/sha.h>
 
 std::string Bookmark::getID(const std::string& url) {
@@ -14,4 +15,10 @@ std::string Bookmark::getID(const std::string& url) {
 		result.append(buf);
 	}
 	return result;
+}
+
+Tags Bookmark::parseTags(const std::string& str) {
+	Tags tags;
+	boost::split(tags, str, boost::is_any_of(","));
+	return tags;
 }

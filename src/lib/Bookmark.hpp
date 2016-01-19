@@ -7,6 +7,8 @@ class Bookmark {
 public:
 	static std::string getID(const std::string& url);
 
+	static Tags parseTags(const std::string&);
+
 	template <typename U, typename T, typename N, typename S>
 	inline Bookmark(U&& aurl, T&& atitle, S&& atags, N&& anotes)
 			: url{aurl}

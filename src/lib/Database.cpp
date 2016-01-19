@@ -2,6 +2,7 @@
 #include "Bookmark.hpp"
 #include <fstream>
 #include <boost/filesystem.hpp>
+#include <iostream>
 
 namespace fs = boost::filesystem;
 
@@ -13,6 +14,7 @@ Database::Database(const Config& config)
 void Database::add(const BookmarkPtr& bookmark) {
 	auto path = this->getAbsolutePath(this->getPath(*bookmark));
 	fs::create_directories(fs::path(path).parent_path());
+	std::cerr << path << "\n";
 	std::ofstream file{path};
 	this->write(file, bookmark);
 }
@@ -82,9 +84,17 @@ std::string Database::getAbsolutePath(const std::string& path) {
 }
 
 void Database::setupDirectory() {
+	std::cerr << "check dir: " << root_ << "\n";
 	fs::path root{root_};
+	std::cerr << fs::canonical(root) << "\n";
 	if (!fs::exists(root)) {
-		fs::create_directories(root);
+		std::cerr << "create dir: " << root_ << "\n";
+		if (!fs::create_directories(root)) {
+			std::cerr << "error\n";
+		}
+	} else {
+
+		std::cerr << "exist dir: " << root_ << "\n";
 	}
 }
 
