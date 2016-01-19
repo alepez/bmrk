@@ -12,6 +12,7 @@ Database::Database(const Config& config)
 
 void Database::add(const BookmarkPtr& bookmark) {
 	auto path = this->getAbsolutePath(this->getPath(*bookmark));
+	fs::create_directories(fs::path(path).parent_path());
 	std::ofstream file{path};
 	this->write(file, bookmark);
 }
