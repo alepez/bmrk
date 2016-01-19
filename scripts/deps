@@ -6,9 +6,14 @@ DEPS_DIR=${PRJ_DIR}/deps
 DEPS_ROOT_DIR=${DEPS_DIR}/root
 DEPS_SRC_DIR=${DEPS_DIR}/src
 
-function gumbo_parser() {
+function die {
+  echo $@
+  exit -1
+}
+
+function gumbo_parser {
   test -e ${DEPS_ROOT_DIR}/lib/libgumbo.a && return
-  git clone https://github.com/google/gumbo-parser \
+  git clone https://github.com/google/gumbo-parser --depth=1 \
     ${DEPS_SRC_DIR}/gumbo-parser
   cd ${DEPS_SRC_DIR}/gumbo-parser \
     && ./autogen.sh \
@@ -17,9 +22,9 @@ function gumbo_parser() {
     && make install
 }
 
-function gumbo_query() {
+function gumbo_query {
   test -e ${DEPS_ROOT_DIR}/lib/libgumbo_quert_static.a && return
-  git clone https://github.com/Falven/gumbo-query \
+  git clone https://github.com/Falven/gumbo-query --depth=1 \
     ${DEPS_SRC_DIR}/gumbo-query
   cd ${DEPS_SRC_DIR}/gumbo-query/build \
     && cmake .. -DCMAKE_INSTALL_PREFIX=${DEPS_ROOT_DIR} \
@@ -32,9 +37,20 @@ function gumbo_query() {
     ${DEPS_ROOT_DIR}/lib/
 }
 
+function folly {
+  # test -e ${DEPS_ROOT_DIR}/lib/libgumbo_quert_static.a && return
+  # git clone https://github.com/facebook/folly.git --depth=1 \
+  #   ${DEPS_SRC_DIR}/folly || die "cannot download folly"
+  cd ${DEPS_SRC_DIR}/folly/folly || die "cannot download folly"
+  autoreconf -ivf || die "error configuring folly"
+  ./configure || die "error configuring folly"
+  make || die "error building folly"
+}
+
 mkdir -p ${DEPS_SRC_DIR}
 mkdir -p ${DEPS_ROOT_DIR}
 cd ${DEPS_SRC_DIR}
 
-gumbo_parser
-gumbo_query
+( gumbo_parser )
+( gumbo_query )
+( folly )

@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 cmake_policy(SET CMP0015 NEW)
+SET(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" "${CMAKE_MODULE_PATH}")
 
 set(PRJ_NAME bmrk)
 
@@ -20,6 +21,7 @@ find_library(GUMBO libgumbo.a)
 find_library(GUMBO_QUERY libgumbo_query_static.a)
 find_package(CURL REQUIRED)
 find_package(OpenSSL REQUIRED)
+find_package(Folly REQUIRED)
 set(LINK_LIBS ${GUMBO_QUERY} ${GUMBO} ${CURL_LIBRARIES} ${OPENSSL_LIBRARIES})
 
 # Subdirectories
