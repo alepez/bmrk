@@ -10,7 +10,7 @@ build/CMakeCache.txt: CMakeLists.txt
 	@cd build && cmake ..
 
 test: all
-	@./build/test/unit_tests
+	@./build/test/lib/unit_tests
 .PHONY: test
 
 distclean:

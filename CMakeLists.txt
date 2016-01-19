@@ -19,7 +19,8 @@ include_directories("deps/root/include")
 find_library(GUMBO libgumbo.a)
 find_library(GUMBO_QUERY libgumbo_query_static.a)
 find_package(CURL REQUIRED)
-set(LINK_LIBS ${GUMBO_QUERY} ${GUMBO} ${CURL_LIBRARIES})
+find_package(OpenSSL REQUIRED)
+set(LINK_LIBS ${GUMBO_QUERY} ${GUMBO} ${CURL_LIBRARIES} ${OPENSSL_LIBRARIES})
 
 # Subdirectories
 add_subdirectory(src/lib)
