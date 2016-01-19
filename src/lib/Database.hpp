@@ -24,6 +24,8 @@ public:
 
 	BookmarkPtr read(std::istream&) const;
 
+	void clear();
+
 private:
 	void setupDirectory();
 	const std::string root_;

@@ -87,3 +87,10 @@ void Database::setupDirectory() {
 		fs::create_directories(root);
 	}
 }
+
+void Database::clear() {
+	fs::path root{root_};
+	for (auto&& l : fs::directory_iterator(root)) {
+		fs::remove_all(l);
+	}
+}

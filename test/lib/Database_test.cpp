@@ -42,3 +42,10 @@ TEST_F(DatabaseTest, CanRemoveBookmark) {
 	db.remove(bookmark);
 	ASSERT_EQ(0u, db.getAllBookmarks().size());
 }
+
+TEST_F(DatabaseTest, CanClear) {
+	auto bookmark = createMockBookmark("http://pezzato.net");
+	db.clear();
+	ASSERT_EQ(0u, db.getAllBookmarks().size());
+}
+
