@@ -10,6 +10,7 @@ struct DatabaseTest : public testing::Test {
 	void SetUp() {
 	}
 	void TearDown() {
+		db.clear();
 	}
 };
 
