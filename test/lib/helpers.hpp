@@ -5,7 +5,7 @@
 
 BookmarkPtr createMockBookmark(std::string url = "",
 		std::string title = "",
-		std::string notes = "",
-		Tags tags = Tags{});
+		Tags tags = Tags{},
+		std::string notes = "");
 
 #endif /* end of include guard: HELPERS_HPP_MRZHJLG4 */

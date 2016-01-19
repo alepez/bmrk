@@ -20,12 +20,12 @@ void Database::add(const BookmarkPtr& bookmark) {
 void Database::write(std::ostream& stream, const BookmarkPtr& bookmark) {
 	stream << bookmark->url << '\n';
 	stream << bookmark->title << '\n';
-	stream << bookmark->notes << '\n';
 	auto&& tags = bookmark->tags;
 	for (unsigned i = 0; i < tags.size(); ++i) {
 		stream << (i ? "," : "") << tags[i];
 	}
 	stream << '\n';
+	stream << bookmark->notes << '\n';
 }
 
 void Database::remove(const BookmarkPtr& bookmark) {

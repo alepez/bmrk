@@ -11,6 +11,6 @@ std::future<BookmarkPtr> Bmrk::createBookmarkFromUrl(const std::string& url) {
 	return std::async(std::launch::async, [url, this]() {
 		auto page = downloader_->load(url).get();
 		auto properties = PageParser(page);
-		return BookmarkPtr(new Bookmark{url, properties.getTitle(), "note", Tags()});
+		return BookmarkPtr(new Bookmark{url, properties.getTitle(), Tags(), "note"});
 	});
 }
