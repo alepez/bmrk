@@ -6,13 +6,25 @@
 
 namespace po = boost::program_options;
 
+std::string getUserRootDir() {
+	if (::getenv("BMRK_DIR")) {
+		return ::getenv("BMRK_DIR");
+	}
+
+	std::string homeDir = ::getenv("HOME");
+	/* linux */
+	return homeDir += "/.config/bmrk";
+	// FIXME support other OS
+}
+
 void add(
 		std::string url, std::string title, std::string tags, std::string notes) {
-	Config config({{"root", "~/.config/bmrk"}});
+	Config config({{"root", getUserRootDir()}});
 	DatabasePtr db = std::make_shared<Database>(config);
 	Library library;
 	library.connect(db);
-	library.add(std::make_shared<Bookmark>(url, title, Bookmark::parseTags(tags), notes));
+	library.add(
+			std::make_shared<Bookmark>(url, title, Bookmark::parseTags(tags), notes));
 }
 
 int main(int argc, char* argv[]) {
