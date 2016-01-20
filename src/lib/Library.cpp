@@ -2,12 +2,10 @@
 #include "Database.hpp"
 #include <algorithm>
 #include "Bookmark.hpp"
-#include <iostream>
 
 void Library::add(BookmarkPtr bookmark) {
 	bookmarks_.push_back(bookmark);
 	if (db_) {
-		std::cerr << "adding...\n";
 		db_->add(bookmark);
 	}
 }

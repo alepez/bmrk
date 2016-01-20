@@ -1,5 +1,4 @@
 #include <string>
-#include <iostream>
 #include <boost/program_options.hpp>
 #include "../lib/Database.hpp"
 #include "../lib/Library.hpp"
@@ -30,7 +29,6 @@ int main(int argc, char* argv[]) {
 
 	if (vm.count("url") && vm.count("title") && vm.count("tags") &&
 			vm.count("notes")) {
-		std::cerr << "adding\n";
 		add(vm["url"].as<std::string>(),
 				vm["title"].as<std::string>(),
 				vm["tags"].as<std::string>(),

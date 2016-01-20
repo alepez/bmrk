@@ -27,7 +27,6 @@ public:
 	void clear();
 
 private:
-	void setupDirectory();
 	const std::string root_;
 };
 
