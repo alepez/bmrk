@@ -8,7 +8,9 @@ class Bookmark;
 class Database;
 class PageDownloader;
 class PageParser;
+class Library;
 
+using LibraryPtr = std::shared_ptr<Library>;
 using DatabasePtr = std::shared_ptr<Database>;
 using BookmarkPtr = std::shared_ptr<const Bookmark>;
 using PageDownloaderPtr = std::shared_ptr<const PageDownloader>;

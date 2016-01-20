@@ -1,8 +1,10 @@
 #include <string>
 #include <boost/program_options.hpp>
 #include "../lib/Database.hpp"
+#include "../lib/PageDownloader.hpp"
 #include "../lib/Library.hpp"
 #include "../lib/Bookmark.hpp"
+#include "../lib/Bmrk.hpp"
 
 namespace po = boost::program_options;
 
@@ -17,16 +19,6 @@ std::string getUserRootDir() {
 	// FIXME support other OS
 }
 
-void add(
-		std::string url, std::string title, std::string tags, std::string notes) {
-	Config config({{"root", getUserRootDir()}});
-	DatabasePtr db = std::make_shared<Database>(config);
-	Library library;
-	library.connect(db);
-	library.add(
-			std::make_shared<Bookmark>(url, title, Bookmark::parseTags(tags), notes));
-}
-
 int main(int argc, char* argv[]) {
 	po::options_description desc{"bmrk"};
 
@@ -39,13 +31,47 @@ int main(int argc, char* argv[]) {
 	po::variables_map vm;
 	po::store(po::parse_command_line(argc, argv, desc), vm);
 
-	if (vm.count("url") && vm.count("title") && vm.count("tags") &&
-			vm.count("notes")) {
-		add(vm["url"].as<std::string>(),
-				vm["title"].as<std::string>(),
-				vm["tags"].as<std::string>(),
-				vm["notes"].as<std::string>());
+	Config config({{"root", getUserRootDir()}});
+
+	auto db = std::make_shared<Database>(config);
+	auto dwl = std::make_shared<PageDownloader>();
+
+	Bmrk bmrk{dwl, db};
+
+	BookmarkPtr bm;
+
+	if (vm.count("url")) {
+		bm = bmrk.createBookmarkFromUrl(vm["url"].as<std::string>()).get();
 	}
+
+	if (vm.count("title")) {
+		bm = std::make_shared<Bookmark>(	 //
+				bm->url,											 //
+				vm["title"].as<std::string>(), //
+				bm->tags,											 //
+				bm->notes											 //
+				);
+	}
+
+	if (vm.count("tags")) {
+		bm = std::make_shared<Bookmark>(											 //
+				bm->url,																					 //
+				bm->title,																				 //
+				Bookmark::parseTags(vm["tags"].as<std::string>()), //
+				bm->notes																					 //
+				);
+	}
+
+	if (vm.count("notes")) {
+		bm = std::make_shared<Bookmark>(	//
+				bm->url,											//
+				bm->title,										//
+				bm->tags,											//
+				vm["notes"].as<std::string>() //
+				);
+	}
+
+	bmrk.add(bm);
 
 	return 0;
 }

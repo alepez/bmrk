@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <Database.hpp>
 #include <Bmrk.hpp>
 #include <Bookmark.hpp>
 #include <PageDownloader.hpp>
@@ -21,7 +22,10 @@ PageDownloaderPtr dwl(const std::string& html) {
 }
 
 struct BmrkTest : public testing::Test {
-	Bmrk bmrk{dwl("<html><head><title>ciao</title></head><body></body></html>")};
+	// FIXME use a mock database
+	Config config{{{"root", "tmp/db"}}};
+	DatabasePtr db = std::make_shared<Database>(config);
+	Bmrk bmrk{dwl("<html><head><title>ciao</title></head><body></body></html>"), db};
 };
 
 TEST_F(BmrkTest, CanGetBookmarkFromUrl) {
