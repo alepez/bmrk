@@ -1,5 +1,7 @@
 #include "Database.hpp"
 #include "Bookmark.hpp"
+#include "Utils.hpp"
+
 #include <fstream>
 #include <boost/filesystem.hpp>
 
@@ -75,7 +77,7 @@ Bookmarks Database::getAllBookmarks() const {
 }
 
 std::string Database::getPath(const Bookmark& bookmark) {
-	auto&& id = bookmark.id;
+	auto&& id = utils::formatId(bookmark.id);
 	return "bookmarks/" + id.substr(0, 2) + "/" + id.substr(2, 2) + "/" + id;
 }
 

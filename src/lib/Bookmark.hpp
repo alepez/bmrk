@@ -5,7 +5,7 @@
 
 class Bookmark {
 public:
-	static std::string getID(const std::string& url);
+	static Id getID(const std::string& url);
 
 	static Tags parseTags(const std::string&);
 
@@ -15,15 +15,20 @@ public:
 			, title{atitle}
 			, tags{atags}
 			, notes{anotes}
-			, id{getID(url)} {
+			, id{Bookmark::getID(url)} {
 	}
 
-	const std::string url;
-	const std::string title;
+	const Url url;
+	const Title title;
 	const Tags tags;
-	const std::string notes;
+	const Notes notes;
 
-	const std::string id;
+	const Id id;
 };
+
+// BookmarkPtr setUrl(BookmarkPtr, std::string);
+// BookmarkPtr setTitle(BookmarkPtr, std::string);
+// BookmarkPtr setTags(BookmarkPtr, Tags);
+// BookmarkPtr setNotes(BookmarkPtr, std::string);
 
 #endif /* end of include guard: BOOKMARK_HPP_4NOOTDNA */
