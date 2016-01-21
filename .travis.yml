@@ -18,6 +18,8 @@ addons:
       - libgtest-dev
 before_install:
  - mkdir -p deps/root/lib deps/src
+ - ls /usr/src/gtest
  - cp -r /usr/src/gtest deps/src/
- - cd deps/src/gtest && cmake . && cmake --build . && cp libg* ../../root/lib ; cd -
+ - ls deps/src/gtest
+ - cd deps/src/gtest && cmake . -DCMAKE_BUILD_TYPE=RELEASE && make && cp libg* ../../root/lib ; cd -
  - ls deps/root/lib
