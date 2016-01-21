@@ -3,6 +3,8 @@ file(GLOB TEST_SOURCES *.cpp)
 add_executable(unit_tests ${TEST_SOURCES})
 add_test(unit_tests unit_tests)
 
+set(CXXFLAGS "${CXXFLAGS} -pthread -std=c++11")
+
 add_definitions("${CXXFLAGS}")
 
 include_directories("." "../../src/lib")
