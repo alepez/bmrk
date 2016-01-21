@@ -52,11 +52,12 @@ void Database::remove(const BookmarkPtr& bookmark) {
 
 template <typename B, typename T>
 void recursiveFindBookmarkFiles(B& bookmarks, T dir) {
-	for (auto&& l : fs::directory_iterator(dir)) {
-		if (fs::is_directory(l)) {
-			recursiveFindBookmarkFiles(bookmarks, l);
+	fs::directory_iterator end;
+	for (fs::directory_iterator it(dir); it != end; ++it) {
+		if (fs::is_directory(*it)) {
+			recursiveFindBookmarkFiles(bookmarks, *it);
 		} else {
-			bookmarks.push_back(l.path().c_str());
+			bookmarks.push_back(it->path().c_str());
 		}
 	}
 }
@@ -93,7 +94,8 @@ std::string setupDirectory(const std::string& rootPath) {
 
 void Database::clear() {
 	fs::path root{root_};
-	for (auto&& l : fs::directory_iterator(root)) {
-		fs::remove_all(l);
+	fs::directory_iterator end;
+	for (fs::directory_iterator it(root); it != end; ++it) {
+		fs::remove_all(*it);
 	}
 }
