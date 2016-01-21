@@ -17,6 +17,6 @@ addons:
       - libcurl4-openssl-dev
       - libgtest-dev
 before_install:
- - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
+ - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mkdir -p /usr/local/lib/ && sudo mv libg* /usr/local/lib/ ; cd -"
  - ls /usr/local/lib
 
