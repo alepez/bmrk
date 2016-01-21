@@ -1,21 +1,12 @@
 language: cpp
-
 compiler:
   - clang
-  - gcc
-
 os:
   - linux
-
 script: make
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
-
-before_install:
- - sudo add-apt-repository ppa:ukplc-team/testing -y
- - sudo apt-get update -qq
- - sudo apt-get install -qq libboost1.49-dev libgtest-dev
- - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
+addons:
+  apt:
+    packages:
+    - cmake
+    - libboost-all-dev
+    - libbcurl3
