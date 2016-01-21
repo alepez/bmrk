@@ -28,9 +28,9 @@ public:
 	const Id id;
 };
 
-// BookmarkPtr setUrl(BookmarkPtr, std::string);
-// BookmarkPtr setTitle(BookmarkPtr, std::string);
-// BookmarkPtr setTags(BookmarkPtr, Tags);
-// BookmarkPtr setNotes(BookmarkPtr, std::string);
+BookmarkPtr setUrl(BookmarkPtr, std::string);
+BookmarkPtr setTitle(BookmarkPtr, std::string);
+BookmarkPtr setTags(BookmarkPtr, Tags);
+BookmarkPtr setNotes(BookmarkPtr, std::string);
 
 #endif /* end of include guard: BOOKMARK_HPP_4NOOTDNA */

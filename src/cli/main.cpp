@@ -45,30 +45,15 @@ int main(int argc, char* argv[]) {
 	}
 
 	if (vm.count("title")) {
-		bm = std::make_shared<Bookmark>(	 //
-				bm->url,											 //
-				vm["title"].as<std::string>(), //
-				bm->tags,											 //
-				bm->notes											 //
-				);
+		bm = setTitle(bm, vm["title"].as<std::string>());
 	}
 
 	if (vm.count("tags")) {
-		bm = std::make_shared<Bookmark>(											 //
-				bm->url,																					 //
-				bm->title,																				 //
-				Bookmark::parseTags(vm["tags"].as<std::string>()), //
-				bm->notes																					 //
-				);
+		bm = setTags(bm, Bookmark::parseTags(vm["tags"].as<std::string>()));
 	}
 
 	if (vm.count("notes")) {
-		bm = std::make_shared<Bookmark>(	//
-				bm->url,											//
-				bm->title,										//
-				bm->tags,											//
-				vm["notes"].as<std::string>() //
-				);
+		bm = setNotes(bm, vm["notes"].as<std::string>());
 	}
 
 	bmrk.add(bm);

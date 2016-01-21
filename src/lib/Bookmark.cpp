@@ -16,3 +16,31 @@ Tags Bookmark::parseTags(const std::string& str) {
 	boost::split(tags, str, boost::is_any_of(","));
 	return tags;
 }
+
+BookmarkPtr setUrl(BookmarkPtr bm, std::string url) {
+	auto&& title = bm->title;
+	auto&& tags = bm->tags;
+	auto&& notes = bm->notes;
+	return std::make_shared<Bookmark>(url, title, tags, notes);
+}
+
+BookmarkPtr setTitle(BookmarkPtr bm, std::string title) {
+	auto&& url = bm->url;
+	auto&& tags = bm->tags;
+	auto&& notes = bm->notes;
+	return std::make_shared<Bookmark>(url, title, tags, notes);
+}
+
+BookmarkPtr setTags(BookmarkPtr bm, Tags tags) {
+	auto&& url = bm->url;
+	auto&& title = bm->title;
+	auto&& notes = bm->notes;
+	return std::make_shared<Bookmark>(url, title, tags, notes);
+}
+
+BookmarkPtr setNotes(BookmarkPtr bm, std::string notes) {
+	auto&& url = bm->url;
+	auto&& title = bm->title;
+	auto&& tags = bm->tags;
+	return std::make_shared<Bookmark>(url, title, tags, notes);
+}
