@@ -1,4 +1,5 @@
 #include "Bookmark.hpp"
+#include <sstream>
 #include <boost/algorithm/string.hpp>
 #include <openssl/sha.h>
 
@@ -15,6 +16,14 @@ Tags Bookmark::parseTags(const std::string& str) {
 	Tags tags;
 	boost::split(tags, str, boost::is_any_of(","));
 	return tags;
+}
+
+std::string Bookmark::formatTags(const Tags& tags) {
+	std::stringstream stream;
+	for (unsigned i = 0; i < tags.size(); ++i) {
+		stream << (i ? "," : "") << tags[i];
+	}
+	return stream.str();
 }
 
 BookmarkPtr setUrl(BookmarkPtr bm, std::string url) {

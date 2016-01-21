@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 #include <boost/program_options.hpp>
 #include "../lib/Database.hpp"
 #include "../lib/PageDownloader.hpp"
@@ -23,6 +24,7 @@ int main(int argc, char* argv[]) {
 	po::options_description desc{"bmrk"};
 
 	desc.add_options()																							 //
+			("interactive,i", "Interactive")					 //
 			("url,u", po::value<std::string>(), "Url")									 //
 			("title,t", po::value<std::string>(), "Title")							 //
 			("tags,a", po::value<std::string>(), "Comma separated tags") //
@@ -54,6 +56,14 @@ int main(int argc, char* argv[]) {
 
 	if (vm.count("notes")) {
 		bm = setNotes(bm, vm["notes"].as<std::string>());
+	}
+
+	if (vm.count("interactive")) {
+		std::cout << "Url: " << bm->url << "\n";
+		std::cout << "Title: " << bm->title << "\n";
+		std::cout << "Tags: " << Bookmark::formatTags(bm->tags) << "\n";
+		std::cout << "Notes: " << bm->notes << "\n";
+		// FIXME ask for new title,tags,notes...
 	}
 
 	bmrk.add(bm);

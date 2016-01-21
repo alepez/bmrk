@@ -8,6 +8,7 @@ public:
 	static Id getID(const std::string& url);
 
 	static Tags parseTags(const std::string&);
+	static std::string formatTags(const Tags&);
 
 	template <typename U, typename T, typename N, typename S>
 	inline Bookmark(U&& aurl, T&& atitle, S&& atags, N&& anotes)
