@@ -11,6 +11,6 @@ before_script:
 addons:
   apt:
     packages:
-    - cmake
-    - libboost-all-dev
-    - libbcurl3
+      - cmake
+      - libboost-all-dev
+      - libbcurl3
