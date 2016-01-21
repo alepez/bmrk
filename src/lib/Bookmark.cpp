@@ -3,7 +3,7 @@
 #include <openssl/sha.h>
 
 Id Bookmark::getID(const std::string& url) {
-	Id result(20);
+	Id result;
 	SHA_CTX ctx;
 	SHA1_Init(&ctx);
 	SHA1_Update(&ctx, url.c_str(), url.size());

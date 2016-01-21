@@ -14,8 +14,7 @@ class Library;
 using Url = std::string;
 using Title = std::string;
 using Notes = std::string;
-// using Id = std::array<uint8_t, 20>; // FIXME problem with gcc when using array
-using Id = std::vector<uint8_t>;
+using Id = std::array<uint8_t, 20>;
 using LibraryPtr = std::shared_ptr<Library>;
 using DatabasePtr = std::shared_ptr<Database>;
 using BookmarkPtr = std::shared_ptr<const Bookmark>;

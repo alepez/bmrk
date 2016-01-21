@@ -15,7 +15,9 @@ public:
 			, title{atitle}
 			, tags{atags}
 			, notes{anotes}
-			, id{Bookmark::getID(url)} {
+			, id(Bookmark::getID(url)) {
+		// FIXME id{Bookmark::getID(url)} works with clang 3.7 but not with gcc 4.9
+		// (it wants round parens)
 	}
 
 	const Url url;
