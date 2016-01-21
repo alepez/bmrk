@@ -4,6 +4,10 @@ compiler:
 os:
   - linux
 script: make
+before_script:
+  - mkdir build
+  - cd build
+  - cmake ..
 addons:
   apt:
     packages:
