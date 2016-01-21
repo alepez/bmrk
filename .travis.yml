@@ -4,7 +4,7 @@ compiler:
   - gcc
 os:
   - linux
-script: ( mkdir build && cd build && cmake .. && make VERBOSE=1 && make all test )
+script: make
 notifications:
   email:
     on_success: change
