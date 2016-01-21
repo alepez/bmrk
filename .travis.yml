@@ -21,7 +21,7 @@ addons:
 before_install:
  - sudo add-apt-repository ppa:george-edison55/cmake-3.x --yes
  - sudo apt-get update
- - sudo apt-get upgrade -o Dpkg::Options::='--force-confold' --force-yes --yes
+ - sudo apt-get upgrade -o Dpkg::Options::='--force-confold' --force-yes --yes cmake
  - mkdir -p deps/root/lib deps/src
  - cp -r /usr/src/gtest deps/src/
  - cd deps/src/gtest && cmake . -DCMAKE_BUILD_TYPE=RELEASE && make && cp libg* ../../root/lib ; cd -
