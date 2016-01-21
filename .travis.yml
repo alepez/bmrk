@@ -12,7 +12,9 @@ addons:
   apt:
     packages:
       - cmake
-      - libboost-dev
+      - libboost-filesystem-dev
+      - libboost-program-options-dev
+      - libcurl4-openssl-dev
       - libgtest-dev
 before_install:
  - cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -
