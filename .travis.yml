@@ -18,4 +18,5 @@ addons:
       - libgtest-dev
 before_install:
  - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
+ - ls /usr/local/lib
 
