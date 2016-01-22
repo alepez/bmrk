@@ -5,29 +5,29 @@
 
 class Database {
 public:
-	/**
-	 * \param config a map with configuration
-	 */
-	Database(const Config& config);
+  /**
+   * \param config a map with configuration
+   */
+  Database(const Config& config);
 
-	void add(const BookmarkPtr&);
+  void add(const BookmarkPtr&);
 
-	void remove(const BookmarkPtr&);
+  void remove(const BookmarkPtr&);
 
-	Bookmarks getAllBookmarks() const;
+  Bookmarks getAllBookmarks() const;
 
-	std::string getPath(const Bookmark&);
+  std::string getPath(const Bookmark&);
 
-	std::string getAbsolutePath(const std::string&);
+  std::string getAbsolutePath(const std::string&);
 
-	void write(std::ostream&, const BookmarkPtr&);
+  void write(std::ostream&, const BookmarkPtr&);
 
-	BookmarkPtr read(std::istream&) const;
+  BookmarkPtr read(std::istream&) const;
 
-	void clear();
+  void clear();
 
 private:
-	const std::string root_;
+  const std::string root_;
 };
 
 #endif /* end of include guard: DATABASE_HPP_AR2QUN8L */

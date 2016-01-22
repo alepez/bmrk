@@ -5,49 +5,50 @@
 #include "helpers.hpp"
 
 struct DatabaseTest : public testing::Test {
-	Config config{{"root", "tmp/db"}};
-	Database db{config};
-	void SetUp() {
-	}
-	void TearDown() {
-		db.clear();
-	}
+  Config config{{"root", "tmp/db"}};
+  Database db{config};
+  void SetUp() {
+  }
+  void TearDown() {
+    db.clear();
+  }
 };
 
 TEST_F(DatabaseTest, DISABLED_GetAbsPath) {
-	// Disabled because the absolute path depends on system
-	ASSERT_EQ("tmp/db/foo", db.getAbsolutePath("foo"));
+  // Disabled because the absolute path depends on system
+  ASSERT_EQ("tmp/db/foo", db.getAbsolutePath("foo"));
 }
 
 TEST_F(DatabaseTest, GetPath) {
-	auto bookmark = createMockBookmark("http://pezzato.net");
-	ASSERT_EQ("bookmarks/65/1d/651db60812a5fff04e5b33ec7384a220da2cee2c", db.getPath(*bookmark));
+  auto bookmark = createMockBookmark("http://pezzato.net");
+  ASSERT_EQ("bookmarks/65/1d/651db60812a5fff04e5b33ec7384a220da2cee2c",
+      db.getPath(*bookmark));
 }
 
 TEST_F(DatabaseTest, CanWriteBookmark) {
-	auto bookmark = createMockBookmark("http://pezzato.net", "one", Tags({"foo","bar"}), "two");
-	std::stringstream stream;
-	db.write(stream, bookmark);
-	ASSERT_EQ("http://pezzato.net\none\nfoo,bar\ntwo\n", stream.str());
+  auto bookmark = createMockBookmark(
+      "http://pezzato.net", "one", Tags({"foo", "bar"}), "two");
+  std::stringstream stream;
+  db.write(stream, bookmark);
+  ASSERT_EQ("http://pezzato.net\none\nfoo,bar\ntwo\n", stream.str());
 }
 
 TEST_F(DatabaseTest, CanAddBookmark) {
-	auto bookmark = createMockBookmark("http://pezzato.net");
-	db.add(bookmark);
-	ASSERT_EQ(1u, db.getAllBookmarks().size());
+  auto bookmark = createMockBookmark("http://pezzato.net");
+  db.add(bookmark);
+  ASSERT_EQ(1u, db.getAllBookmarks().size());
 }
 
 TEST_F(DatabaseTest, CanRemoveBookmark) {
-	auto bookmark = createMockBookmark("http://pezzato.net");
-	db.add(bookmark);
-	ASSERT_EQ(1u, db.getAllBookmarks().size());
-	db.remove(bookmark);
-	ASSERT_EQ(0u, db.getAllBookmarks().size());
+  auto bookmark = createMockBookmark("http://pezzato.net");
+  db.add(bookmark);
+  ASSERT_EQ(1u, db.getAllBookmarks().size());
+  db.remove(bookmark);
+  ASSERT_EQ(0u, db.getAllBookmarks().size());
 }
 
 TEST_F(DatabaseTest, CanClear) {
-	auto bookmark = createMockBookmark("http://pezzato.net");
-	db.clear();
-	ASSERT_EQ(0u, db.getAllBookmarks().size());
+  auto bookmark = createMockBookmark("http://pezzato.net");
+  db.clear();
+  ASSERT_EQ(0u, db.getAllBookmarks().size());
 }
-

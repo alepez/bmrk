@@ -9,10 +9,10 @@
  */
 class PageDownloader {
 public:
-	/**
-	 * \return a future with the downloaded document
-	 */
-	virtual std::future<std::string> load(const std::string& url) const;
+  /**
+   * \return a future with the downloaded document
+   */
+  virtual std::future<std::string> load(const std::string& url) const;
 };
 
 #endif /* end of include guard: PAGEDOWNLOADER_HPP_R1YIYM0U */

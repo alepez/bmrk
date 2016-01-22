@@ -5,28 +5,28 @@
 
 class Bookmark {
 public:
-	static Id getID(const std::string& url);
+  static Id getID(const std::string& url);
 
-	static Tags parseTags(const std::string&);
-	static std::string formatTags(const Tags&);
+  static Tags parseTags(const std::string&);
+  static std::string formatTags(const Tags&);
 
-	template <typename U, typename T, typename N, typename S>
-	inline Bookmark(U&& aurl, T&& atitle, S&& atags, N&& anotes)
-			: url{aurl}
-			, title{atitle}
-			, tags{atags}
-			, notes{anotes}
-			, id(Bookmark::getID(url)) {
-		// FIXME id{Bookmark::getID(url)} works with clang 3.7 but not with gcc 4.9
-		// (it wants round parens)
-	}
+  template <typename U, typename T, typename N, typename S>
+  inline Bookmark(U&& aurl, T&& atitle, S&& atags, N&& anotes)
+      : url{aurl}
+      , title{atitle}
+      , tags{atags}
+      , notes{anotes}
+      , id(Bookmark::getID(url)) {
+    // FIXME id{Bookmark::getID(url)} works with clang 3.7 but not with gcc 4.9
+    // (it wants round parens)
+  }
 
-	const Url url;
-	const Title title;
-	const Tags tags;
-	const Notes notes;
+  const Url url;
+  const Title title;
+  const Tags tags;
+  const Notes notes;
 
-	const Id id;
+  const Id id;
 };
 
 BookmarkPtr setUrl(BookmarkPtr, std::string);
