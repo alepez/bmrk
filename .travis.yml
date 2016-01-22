@@ -5,11 +5,6 @@ compiler:
   - clang
 os:
   - linux
-script: make test
-before_script:
-  - mkdir build
-  - cd build
-  - cmake ..
 addons:
   apt:
     packages:
@@ -27,3 +22,9 @@ install:
  - cp -r /usr/src/gtest deps/src/
  - cd deps/src/gtest && cmake . -DCMAKE_BUILD_TYPE=RELEASE && make && cp libg* ../../root/lib ; cd -
  - ./scripts/deps
+before_script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cd ..
+script: make test
