@@ -20,6 +20,10 @@ public:
 	 * \return the page's title
 	 */
 	std::string getTitle() const;
+	/**
+	 * \return the page's description
+	 */
+	std::string getNotes() const;
 
 private:
 	std::shared_ptr<CDocument> doc_;
