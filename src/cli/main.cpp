@@ -8,6 +8,8 @@
 #include "../lib/Bmrk.hpp"
 
 namespace po = boost::program_options;
+using std::cin;
+using std::cout;
 
 std::string getUserRootDir() {
 	if (::getenv("BMRK_DIR")) {
@@ -20,11 +22,20 @@ std::string getUserRootDir() {
 	// FIXME support other OS
 }
 
+void tryChange(std::string& str) {
+	std::string line;
+	cout << "Change? ";
+	std::getline(cin, line);
+	if (!line.empty()) {
+		str = line;
+	}
+}
+
 int main(int argc, char* argv[]) {
 	po::options_description desc{"bmrk"};
 
 	desc.add_options()																							 //
-			("interactive,i", "Interactive")					 //
+			("interactive,i", "Interactive")														 //
 			("url,u", po::value<std::string>(), "Url")									 //
 			("title,t", po::value<std::string>(), "Title")							 //
 			("tags,a", po::value<std::string>(), "Comma separated tags") //
@@ -40,31 +51,36 @@ int main(int argc, char* argv[]) {
 
 	Bmrk bmrk{dwl, db};
 
-	BookmarkPtr bm;
-
-	if (vm.count("url")) {
-		bm = bmrk.createBookmarkFromUrl(vm["url"].as<std::string>()).get();
+	auto url = vm.count("url") ? vm["url"].as<std::string>() : "";
+	if (url.empty()) {
+		// FIXME here we need a more friendly error
+		throw std::runtime_error("url is mandatory");
 	}
 
-	if (vm.count("title")) {
-		bm = setTitle(bm, vm["title"].as<std::string>());
-	}
+	BookmarkPtr bm = bmrk.createBookmarkFromUrl(url).get();
 
-	if (vm.count("tags")) {
-		bm = setTags(bm, Bookmark::parseTags(vm["tags"].as<std::string>()));
-	}
-
-	if (vm.count("notes")) {
-		bm = setNotes(bm, vm["notes"].as<std::string>());
-	}
+	auto title = vm.count("title") ? vm["title"].as<std::string>() : "";
+	auto tags = vm.count("tags") ? vm["tags"].as<std::string>() : "";
+	auto notes = vm.count("notes") ? vm["notes"].as<std::string>() : "";
 
 	if (vm.count("interactive")) {
-		std::cout << "Url: " << bm->url << "\n";
-		std::cout << "Title: " << bm->title << "\n";
-		std::cout << "Tags: " << Bookmark::formatTags(bm->tags) << "\n";
-		std::cout << "Notes: " << bm->notes << "\n";
-		// FIXME ask for new title,tags,notes...
+		std::string line;
+
+		cout << "Url: " << bm->url << "\n";
+
+		cout << "Title: " << bm->title << "\n";
+		tryChange(title);
+
+		cout << "Tags: " << Bookmark::formatTags(bm->tags) << "\n";
+		tryChange(tags);
+
+		cout << "Notes: " << bm->notes << "\n";
+		tryChange(notes);
 	}
+
+	bm = setTitle(bm, title);
+	bm = setTags(bm, Bookmark::parseTags(tags));
+	bm = setNotes(bm, notes);
 
 	bmrk.add(bm);
 
