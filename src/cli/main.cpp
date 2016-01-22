@@ -59,23 +59,23 @@ int main(int argc, char* argv[]) {
 
 	BookmarkPtr bm = bmrk.createBookmarkFromUrl(url).get();
 
-	auto title = vm.count("title") ? vm["title"].as<std::string>() : "";
-	auto tags = vm.count("tags") ? vm["tags"].as<std::string>() : "";
-	auto notes = vm.count("notes") ? vm["notes"].as<std::string>() : "";
+	auto title = vm.count("title") ? vm["title"].as<std::string>() : bm->title;
+	auto tags = vm.count("tags") ? vm["tags"].as<std::string>() : Bookmark::formatTags(bm->tags);
+	auto notes = vm.count("notes") ? vm["notes"].as<std::string>() : bm->notes;
 
 	if (vm.count("interactive")) {
 		std::string line;
 
 		cout << "Url: " << bm->url << "\n";
 
-		cout << "Title: " << bm->title << "\n";
-		tryChange(title);
+		cout << "Title: " << title << "\n";
+		if (title.empty()) tryChange(title);
 
-		cout << "Tags: " << Bookmark::formatTags(bm->tags) << "\n";
-		tryChange(tags);
+		cout << "Tags: " << tags << "\n";
+		if (tags.empty()) tryChange(tags);
 
-		cout << "Notes: " << bm->notes << "\n";
-		tryChange(notes);
+		cout << "Notes: " << notes << "\n";
+		if (notes.empty()) tryChange(notes);
 	}
 
 	bm = setTitle(bm, title);
