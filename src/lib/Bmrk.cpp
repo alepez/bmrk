@@ -10,9 +10,8 @@ Bmrk::Bmrk(PageDownloaderPtr downloader, DatabasePtr db)
   library_->connect(db);
 }
 
-std::future<BookmarkPtr> Bmrk::createBookmarkFromUrl(
-    const std::string& url) const {
-  return std::async(std::launch::async, [url, this]() {
+Future<BookmarkPtr> Bmrk::createBookmarkFromUrl(const String& url) const {
+  return async([url, this]() {
     auto page = downloader_->load(url).get();
     auto properties = PageParser(page);
     return BookmarkPtr(new Bookmark{url, properties.getTitle(), Tags(), ""});

@@ -7,17 +7,16 @@
 
 class PageDownloaderMock : public PageDownloader {
 public:
-  PageDownloaderMock(const std::string& html) : html_{html} {};
-  std::future<std::string> load(const std::string& url) const override {
-    return std::async(
-        std::launch::async, [url, this]() -> std::string { return html_; });
+  PageDownloaderMock(const String& html) : html_{html} {};
+  Future<String> load(const String& url) const override {
+    return async([url, this]() -> String { return html_; });
   }
 
 private:
-  std::string html_;
+  String html_;
 };
 
-PageDownloaderPtr dwl(const std::string& html) {
+PageDownloaderPtr dwl(const String& html) {
   return PageDownloaderPtr{new PageDownloaderMock(html)};
 }
 
@@ -25,8 +24,11 @@ struct BmrkTest : public testing::Test {
   // FIXME use a mock database
   Config config{{{"root", "tmp/db"}}};
   DatabasePtr db = std::make_shared<Database>(config);
-  Bmrk bmrk{
-      dwl("<html><head><title>ciao</title></head><body></body></html>"), db};
+  Bmrk bmrk{dwl("<html><head>"
+                "<title>ciao</title>"
+                "</head><body>"
+                "</body></html>"),
+      db};
 };
 
 TEST_F(BmrkTest, CanGetBookmarkFromUrl) {

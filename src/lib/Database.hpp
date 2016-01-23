@@ -16,9 +16,9 @@ public:
 
   Bookmarks getAllBookmarks() const;
 
-  std::string getPath(const Bookmark&);
+  String getPath(const Bookmark&);
 
-  std::string getAbsolutePath(const std::string&);
+  String getAbsolutePath(const String&);
 
   void write(std::ostream&, const BookmarkPtr&);
 
@@ -27,7 +27,7 @@ public:
   void clear();
 
 private:
-  const std::string root_;
+  const String root_;
 };
 
 #endif /* end of include guard: DATABASE_HPP_AR2QUN8L */

@@ -5,10 +5,10 @@
 
 class Bookmark {
 public:
-  static Id getID(const std::string& url);
+  static Id getID(const String& url);
 
-  static Tags parseTags(const std::string&);
-  static std::string formatTags(const Tags&);
+  static Tags parseTags(const String&);
+  static String formatTags(const Tags&);
 
   template <typename U, typename T, typename N, typename S>
   inline Bookmark(U&& aurl, T&& atitle, S&& atags, N&& anotes)
@@ -29,9 +29,9 @@ public:
   const Id id;
 };
 
-BookmarkPtr setUrl(BookmarkPtr, std::string);
-BookmarkPtr setTitle(BookmarkPtr, std::string);
+BookmarkPtr setUrl(BookmarkPtr, String);
+BookmarkPtr setTitle(BookmarkPtr, String);
 BookmarkPtr setTags(BookmarkPtr, Tags);
-BookmarkPtr setNotes(BookmarkPtr, std::string);
+BookmarkPtr setNotes(BookmarkPtr, String);
 
 #endif /* end of include guard: BOOKMARK_HPP_4NOOTDNA */

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <memory>
+#include "bmrk_fwd.hpp"
 
 class CDocument;
 
@@ -14,16 +15,16 @@ public:
   /**
    * \param html the page's html
    */
-  PageParser(const std::string& html);
+  PageParser(const String& html);
 
   /**
    * \return the page's title
    */
-  std::string getTitle() const;
+  String getTitle() const;
   /**
    * \return the page's description
    */
-  std::string getNotes() const;
+  String getNotes() const;
 
 private:
   std::shared_ptr<CDocument> doc_;

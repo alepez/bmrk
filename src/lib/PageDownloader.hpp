@@ -1,6 +1,7 @@
 #ifndef PAGEDOWNLOADER_HPP_R1YIYM0U
 #define PAGEDOWNLOADER_HPP_R1YIYM0U
 
+#include "bmrk_fwd.hpp"
 #include <string>
 #include <future>
 
@@ -12,7 +13,7 @@ public:
   /**
    * \return a future with the downloaded document
    */
-  virtual std::future<std::string> load(const std::string& url) const;
+  virtual Future<String> load(const String& url) const;
 };
 
 #endif /* end of include guard: PAGEDOWNLOADER_HPP_R1YIYM0U */

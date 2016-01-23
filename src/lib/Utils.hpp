@@ -5,7 +5,7 @@
 
 namespace utils {
 
-std::string formatId(Id);
+String formatId(Id);
 }
 
 #endif /* end of include guard: UTILS_HPP_4KGB1CZC */

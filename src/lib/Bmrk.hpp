@@ -1,9 +1,7 @@
 #ifndef BMRK_HPP_0Q6IB5LJ
 #define BMRK_HPP_0Q6IB5LJ
 
-#include <string>
 #include "bmrk_fwd.hpp"
-#include <future>
 
 /**
  * Bmrk
@@ -19,7 +17,7 @@ public:
   /**
    * \return a future with the created bookmark
    */
-  std::future<BookmarkPtr> createBookmarkFromUrl(const std::string& url) const;
+  Future<BookmarkPtr> createBookmarkFromUrl(const std::string& url) const;
 
   void add(BookmarkPtr);
 

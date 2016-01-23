@@ -1,9 +1,14 @@
+#ifndef BMRK_FWD_HPP_C9NIKUEG
+#define BMRK_FWD_HPP_C9NIKUEG
+
+#include <array>
+#include <functional>
+#include <future>
 #include <map>
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <vector>
-#include <functional>
-#include <array>
 
 class Bookmark;
 class Database;
@@ -28,3 +33,23 @@ using ExplicitFilter = std::function<Bookmarks(Bookmarks)>;
 using Filter = std::function<bool(BookmarkPtr)>;
 
 using Config = std::map<std::string, std::string>;
+
+template <typename T>
+using Future = std::future<T>;
+
+using String = std::string;
+
+template <typename T, typename U>
+using Map = std::map<T, U>;
+
+template <typename T>
+using Vector = std::vector<T>;
+
+template <typename T>
+inline auto async(T fun) {
+  return std::async(std::launch::async, fun);
+}
+
+using Error = std::runtime_error;
+
+#endif /* end of include guard: BMRK_FWD_HPP_C9NIKUEG */

@@ -2,7 +2,7 @@
 #include <string>
 
 BookmarkPtr createMockBookmark(
-    std::string url, std::string title, Tags tags, std::string notes) {
+    String url, String title, Tags tags, String notes) {
   if (url.empty()) url = "http://pezzato.net";
   if (title.empty()) title = "Alessandro Pezzato";
   if (tags.empty()) tags = Tags({"foo", "bar", "zee"});

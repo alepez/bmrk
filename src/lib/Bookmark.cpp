@@ -3,7 +3,7 @@
 #include <boost/algorithm/string.hpp>
 #include <openssl/sha.h>
 
-Id Bookmark::getID(const std::string& url) {
+Id Bookmark::getID(const String& url) {
   Id result;
   SHA_CTX ctx;
   SHA1_Init(&ctx);
@@ -12,13 +12,13 @@ Id Bookmark::getID(const std::string& url) {
   return result;
 }
 
-Tags Bookmark::parseTags(const std::string& str) {
+Tags Bookmark::parseTags(const String& str) {
   Tags tags;
   boost::split(tags, str, boost::is_any_of(","));
   return tags;
 }
 
-std::string Bookmark::formatTags(const Tags& tags) {
+String Bookmark::formatTags(const Tags& tags) {
   std::stringstream stream;
   for (unsigned i = 0; i < tags.size(); ++i) {
     stream << (i ? "," : "") << tags[i];
@@ -26,14 +26,14 @@ std::string Bookmark::formatTags(const Tags& tags) {
   return stream.str();
 }
 
-BookmarkPtr setUrl(BookmarkPtr bm, std::string url) {
+BookmarkPtr setUrl(BookmarkPtr bm, String url) {
   auto&& title = bm->title;
   auto&& tags = bm->tags;
   auto&& notes = bm->notes;
   return std::make_shared<Bookmark>(url, title, tags, notes);
 }
 
-BookmarkPtr setTitle(BookmarkPtr bm, std::string title) {
+BookmarkPtr setTitle(BookmarkPtr bm, String title) {
   auto&& url = bm->url;
   auto&& tags = bm->tags;
   auto&& notes = bm->notes;
@@ -47,7 +47,7 @@ BookmarkPtr setTags(BookmarkPtr bm, Tags tags) {
   return std::make_shared<Bookmark>(url, title, tags, notes);
 }
 
-BookmarkPtr setNotes(BookmarkPtr bm, std::string notes) {
+BookmarkPtr setNotes(BookmarkPtr bm, String notes) {
   auto&& url = bm->url;
   auto&& title = bm->title;
   auto&& tags = bm->tags;

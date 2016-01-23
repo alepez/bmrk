@@ -7,7 +7,7 @@
 
 namespace fs = boost::filesystem;
 
-static std::string setupDirectory(const std::string&);
+static String setupDirectory(const String&);
 
 Database::Database(const Config& config)
     : root_{setupDirectory(config.at("root"))} {
@@ -28,7 +28,7 @@ void Database::write(std::ostream& stream, const BookmarkPtr& bookmark) {
 }
 
 BookmarkPtr Database::read(std::istream& stream) const {
-  std::string url, title, notes, buf;
+  String url, title, notes, buf;
   Tags tags;
   std::getline(stream, url);
   std::getline(stream, title);
@@ -63,7 +63,7 @@ void recursiveFindBookmarkFiles(B& bookmarks, T dir) {
 
 Bookmarks Database::getAllBookmarks() const {
   Bookmarks bookmarks;
-  std::vector<std::string> bookmarkFiles;
+  std::vector<String> bookmarkFiles;
   recursiveFindBookmarkFiles(bookmarkFiles, fs::path(root_));
   for (auto&& f : bookmarkFiles) {
     std::ifstream file{f};
@@ -72,23 +72,23 @@ Bookmarks Database::getAllBookmarks() const {
   return bookmarks;
 }
 
-std::string Database::getPath(const Bookmark& bookmark) {
+String Database::getPath(const Bookmark& bookmark) {
   auto&& id = utils::formatId(bookmark.id);
   return "bookmarks/" + id.substr(0, 2) + "/" + id.substr(2, 2) + "/" + id;
 }
 
-std::string Database::getAbsolutePath(const std::string& path) {
+String Database::getAbsolutePath(const String& path) {
   return root_ + "/" + path;
 }
 
-std::string setupDirectory(const std::string& rootPath) {
+String setupDirectory(const String& rootPath) {
   fs::path root{rootPath};
   if (!fs::exists(root)) {
     if (!fs::create_directories(root)) {
-      throw std::runtime_error{"Cannot create database directory!"};
+      throw Error{"Cannot create database directory!"};
     }
   }
-  return fs::canonical(root).string<std::string>();
+  return fs::canonical(root).string<String>();
 }
 
 void Database::clear() {

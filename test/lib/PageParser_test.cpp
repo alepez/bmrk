@@ -3,7 +3,7 @@
 #include <string>
 
 TEST(PageParserTest, CanParseTitle) {
-  std::string html =
+  String html =
       "<html><head>"
       "<title>This is a title</title>"
       "</head><body></body></html>";
@@ -22,7 +22,7 @@ TEST(PageParserTest, ThrowsWithEmptyDocument) {
 
 // FIXME parse description
 TEST(PageParserTest, DISABLED_CanParseDescription) {
-  std::string html =
+  String html =
       "<html><head>"
       "<title>This is a title</title>"
       "<meta name=\"description\">foo bar</meta>"

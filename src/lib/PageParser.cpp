@@ -3,22 +3,22 @@
 #include <gumbo-query/Node.h>
 #include <gumbo-query/Document.h>
 
-PageParser::PageParser(const std::string& html) : doc_{new CDocument} {
+PageParser::PageParser(const String& html) : doc_{new CDocument} {
   if (html.empty()) {
-    throw std::runtime_error{"Empty document"};
+    throw Error{"Empty document"};
   }
   doc_->parse(html.c_str());
 }
 
-std::string PageParser::getTitle() const {
+String PageParser::getTitle() const {
   auto&& node = doc_->find("head title").nodeAt(0);
   if (!node.valid()) {
-    throw std::runtime_error{"Cannot parse title"};
+    throw Error{"Cannot parse title"};
   }
   return node.text();
 }
 
-std::string PageParser::getNotes() const {
+String PageParser::getNotes() const {
   // FIXME select by attribute doesn't work
   auto&& node = doc_->find("head meta[name='description']").nodeAt(0);
   return node.valid() ? node.text() : "";

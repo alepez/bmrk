@@ -1,8 +1,8 @@
 #include "Utils.hpp"
 
 namespace utils {
-std::string formatId(Id id) {
-  std::string result;
+String formatId(Id id) {
+  String result;
   result.reserve(id.size() * 2);
   char buf[3];
   for (auto&& i : id) {
