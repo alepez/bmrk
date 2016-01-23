@@ -44,12 +44,12 @@ int main(int argc, char* argv[]) {
   po::variables_map vm;
   po::store(po::parse_command_line(argc, argv, desc), vm);
 
-  Config config({{"root", getUserRootDir()}});
+  bmrk::Config config({{"root", getUserRootDir()}});
 
-  auto db = std::make_shared<Database>(config);
-  auto dwl = std::make_shared<PageDownloader>();
+  auto db = std::make_shared<bmrk::Database>(config);
+  auto dwl = std::make_shared<bmrk::PageDownloader>();
 
-  Bmrk bmrk{dwl, db};
+  bmrk::Bmrk bmrk{dwl, db};
 
   auto url = vm.count("url") ? vm["url"].as<std::string>() : "";
   if (url.empty()) {
@@ -57,11 +57,11 @@ int main(int argc, char* argv[]) {
     throw std::runtime_error("url is mandatory");
   }
 
-  BookmarkPtr bm = bmrk.createBookmarkFromUrl(url).get();
+  auto bm = bmrk.createBookmarkFromUrl(url).get();
 
   auto title = vm.count("title") ? vm["title"].as<std::string>() : bm->title;
   auto tags = vm.count("tags") ? vm["tags"].as<std::string>()
-                               : Bookmark::formatTags(bm->tags);
+                               : bmrk::Bookmark::formatTags(bm->tags);
   auto notes = vm.count("notes") ? vm["notes"].as<std::string>() : bm->notes;
 
   if (vm.count("interactive")) {
@@ -80,7 +80,7 @@ int main(int argc, char* argv[]) {
   }
 
   bm = setTitle(bm, title);
-  bm = setTags(bm, Bookmark::parseTags(tags));
+  bm = setTags(bm, bmrk::Bookmark::parseTags(tags));
   bm = setNotes(bm, notes);
 
   bmrk.add(bm);

@@ -10,6 +10,8 @@
 #include <string>
 #include <vector>
 
+namespace bmrk {
+
 class Bookmark;
 class Database;
 class PageDownloader;
@@ -52,4 +54,5 @@ inline auto async(T fun) {
 
 using Error = std::runtime_error;
 
+} /* bmrk  */
 #endif /* end of include guard: BMRK_FWD_HPP_C9NIKUEG */

@@ -4,6 +4,8 @@
 #include "PageParser.hpp"
 #include "Library.hpp"
 
+namespace bmrk {
+
 Bmrk::Bmrk(PageDownloaderPtr downloader, DatabasePtr db)
     : downloader_{downloader}, db_{db} {
   library_.reset(new Library);
@@ -21,3 +23,4 @@ Future<BookmarkPtr> Bmrk::createBookmarkFromUrl(const String& url) const {
 void Bmrk::add(BookmarkPtr bookmark) {
   library_->add(bookmark);
 }
+} /* bmrk  */

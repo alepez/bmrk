@@ -5,6 +5,8 @@
 #include <PageDownloader.hpp>
 #include <memory>
 
+namespace bmrk {
+
 class PageDownloaderMock : public PageDownloader {
 public:
   PageDownloaderMock(const String& html) : html_{html} {};
@@ -35,3 +37,4 @@ TEST_F(BmrkTest, CanGetBookmarkFromUrl) {
   auto bookmark = bmrk.createBookmarkFromUrl("http://pezzato.net").get();
   ASSERT_EQ("ciao", bookmark->title);
 }
+} /* bmrk  */

@@ -3,6 +3,8 @@
 
 #include "bmrk_fwd.hpp"
 
+namespace bmrk {
+
 class Database {
 public:
   /**
@@ -30,4 +32,5 @@ private:
   const String root_;
 };
 
+} /* bmrk  */
 #endif /* end of include guard: DATABASE_HPP_AR2QUN8L */

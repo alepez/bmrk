@@ -5,6 +5,8 @@
 #include <string>
 #include <future>
 
+namespace bmrk {
+
 /**
  * Download a document from a remote url
  */
@@ -16,4 +18,5 @@ public:
   virtual Future<String> load(const String& url) const;
 };
 
+} /* bmrk  */
 #endif /* end of include guard: PAGEDOWNLOADER_HPP_R1YIYM0U */

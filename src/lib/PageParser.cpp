@@ -3,6 +3,8 @@
 #include <gumbo-query/Node.h>
 #include <gumbo-query/Document.h>
 
+namespace bmrk {
+
 PageParser::PageParser(const String& html) : doc_{new CDocument} {
   if (html.empty()) {
     throw Error{"Empty document"};
@@ -23,3 +25,4 @@ String PageParser::getNotes() const {
   auto&& node = doc_->find("head meta[name='description']").nodeAt(0);
   return node.valid() ? node.text() : "";
 }
+} /* bmrk  */

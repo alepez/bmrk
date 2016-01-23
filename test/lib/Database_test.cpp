@@ -4,6 +4,8 @@
 #include <Bookmark.hpp>
 #include "helpers.hpp"
 
+namespace bmrk {
+
 struct DatabaseTest : public testing::Test {
   Config config{{"root", "tmp/db"}};
   Database db{config};
@@ -52,3 +54,4 @@ TEST_F(DatabaseTest, CanClear) {
   db.clear();
   ASSERT_EQ(0u, db.getAllBookmarks().size());
 }
+} /* bmrk  */

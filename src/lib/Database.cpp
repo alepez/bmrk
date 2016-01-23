@@ -5,6 +5,8 @@
 #include <fstream>
 #include <boost/filesystem.hpp>
 
+namespace bmrk {
+
 namespace fs = boost::filesystem;
 
 static String setupDirectory(const String&);
@@ -98,3 +100,4 @@ void Database::clear() {
     fs::remove_all(*it);
   }
 }
+} /* bmrk  */

@@ -7,6 +7,8 @@
 
 class CDocument;
 
+namespace bmrk {
+
 /**
  * Parse html string and get info from it
  */
@@ -30,4 +32,5 @@ private:
   std::shared_ptr<CDocument> doc_;
 };
 
+} /* bmrk  */
 #endif /* end of include guard: PAGEPARSER_HPP_GUTITDEQ */

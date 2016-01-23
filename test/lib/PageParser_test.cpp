@@ -2,6 +2,8 @@
 #include <PageParser.hpp>
 #include <string>
 
+namespace bmrk {
+
 TEST(PageParserTest, CanParseTitle) {
   String html =
       "<html><head>"
@@ -30,3 +32,4 @@ TEST(PageParserTest, DISABLED_CanParseDescription) {
   PageParser parser{html};
   ASSERT_EQ("foo bar", parser.getNotes());
 }
+} /* bmrk  */

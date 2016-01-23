@@ -3,6 +3,8 @@
 
 #include "bmrk_fwd.hpp"
 
+namespace bmrk {
+
 /**
  * Keeps all the bookmarks and filter them
  */
@@ -46,4 +48,5 @@ private:
   DatabasePtr db_;
 };
 
+} /* bmrk  */
 #endif /* end of include guard: LIBRARY_HPP_AZX093RT */

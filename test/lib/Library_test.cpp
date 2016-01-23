@@ -5,6 +5,8 @@
 #include <memory>
 #include "helpers.hpp"
 
+namespace bmrk {
+
 struct LibraryTest : public testing::Test {
   Library library;
   void SetUp() {
@@ -39,3 +41,4 @@ TEST_F(LibraryTest, CanConnectToDatabase) {
   auto db = std::make_shared<Database>(Config({{"root", "tmp/db"}}));
   library.connect(db);
 }
+} /* bmrk  */

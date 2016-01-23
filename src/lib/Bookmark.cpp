@@ -3,6 +3,8 @@
 #include <boost/algorithm/string.hpp>
 #include <openssl/sha.h>
 
+namespace bmrk {
+
 Id Bookmark::getID(const String& url) {
   Id result;
   SHA_CTX ctx;
@@ -53,3 +55,4 @@ BookmarkPtr setNotes(BookmarkPtr bm, String notes) {
   auto&& tags = bm->tags;
   return std::make_shared<Bookmark>(url, title, tags, notes);
 }
+} /* bmrk  */

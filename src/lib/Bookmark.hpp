@@ -3,6 +3,8 @@
 
 #include "bmrk_fwd.hpp"
 
+namespace bmrk {
+
 class Bookmark {
 public:
   static Id getID(const String& url);
@@ -34,4 +36,5 @@ BookmarkPtr setTitle(BookmarkPtr, String);
 BookmarkPtr setTags(BookmarkPtr, Tags);
 BookmarkPtr setNotes(BookmarkPtr, String);
 
+} /* bmrk  */
 #endif /* end of include guard: BOOKMARK_HPP_4NOOTDNA */

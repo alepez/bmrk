@@ -3,6 +3,8 @@
 
 #include "bmrk_fwd.hpp"
 
+namespace bmrk {
+
 /**
  * Bmrk
  */
@@ -27,4 +29,5 @@ private:
   LibraryPtr library_;
 };
 
+} /* bmrk  */
 #endif /* end of include guard: BMRK_HPP_0Q6IB5LJ */

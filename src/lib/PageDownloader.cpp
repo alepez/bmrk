@@ -5,6 +5,8 @@
 #include <curl/easy.h>
 #include <sstream>
 
+namespace bmrk {
+
 namespace {
 
 using CurlWriteFunction = size_t (*)(void*, size_t, size_t, void*);
@@ -44,3 +46,4 @@ Future<String> PageDownloader::load(const String& url) const {
     return stream.str();
   });
 }
+} /* bmrk  */

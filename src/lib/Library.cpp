@@ -3,6 +3,8 @@
 #include <algorithm>
 #include "Bookmark.hpp"
 
+namespace bmrk {
+
 void Library::add(BookmarkPtr bookmark) {
   bookmarks_.push_back(bookmark);
   if (db_) {
@@ -45,3 +47,4 @@ Bookmarks Library::filter(Filter filter) const {
 void Library::connect(DatabasePtr db) {
   db_ = db;
 }
+} /* bmrk  */
