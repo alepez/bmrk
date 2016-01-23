@@ -10,7 +10,7 @@ set(PRJ_BUILD_EXECUTABLE 1)
 set(PRJ_BUILD_STATIC_LIBRARY 1)
 set(PRJ_BUILD_SHARED_LIBRARY 0)
 
-set(CXXFLAGS "-std=c++14")
+set(CXXFLAGS "-std=c++11")
 
 # How to find third party libraries
 set(CMAKE_PREFIX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/deps/root)

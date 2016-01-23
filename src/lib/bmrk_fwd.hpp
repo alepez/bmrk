@@ -47,10 +47,10 @@ using Map = std::map<T, U>;
 template <typename T>
 using Vector = std::vector<T>;
 
-template <typename T>
-inline auto async(T fun) {
-  return std::async(std::launch::async, fun);
-}
+// template <typename T>
+// inline auto async(T fun) {
+//   return std::async(std::launch::async, fun);
+// }
 
 using Error = std::runtime_error;
 

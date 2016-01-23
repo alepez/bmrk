@@ -40,7 +40,7 @@ void downloadToStreamWithCurl(const String& url, T* stream) {
 } // end namespace
 
 Future<String> PageDownloader::load(const String& url) const {
-  return async([url]() {
+  return std::async([url]() {
     std::stringstream stream;
     downloadToStreamWithCurl(url, &stream);
     return stream.str();

@@ -11,7 +11,7 @@ class PageDownloaderMock : public PageDownloader {
 public:
   PageDownloaderMock(const String& html) : html_{html} {};
   Future<String> load(const String& url) const override {
-    return async([url, this]() -> String { return html_; });
+    return std::async([url, this]() -> String { return html_; });
   }
 
 private:
