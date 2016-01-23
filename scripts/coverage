@@ -1,4 +1,5 @@
 #!/bin/bash
 
-make test
-llvm-profdata merge -o ./build/test/lib/default.prodata ./build/test/lib/default.profraw
+mkdir -p tmp/coverage
+LLVM_PROFILE_FILE=tmp/coverage/default.profraw make test
+llvm-profdata merge -o tmp/coverage/default.profdata tmp/coverage/default.profraw
