@@ -11,7 +11,10 @@ target_link_libraries(unit_tests "${PRJ_NAME}-static" ${LINK_LIBS})
 target_link_libraries(unit_tests ${LINK_LIBS})
 
 if(${TEST_COVERAGE})
-  target_link_libraries(unit_tests "--coverage")
+  target_compile_options(unit_tests PRIVATE "-fcoverage-mapping")
+  target_compile_options(unit_tests PRIVATE "-fprofile-instr-generate")
+  target_link_libraries(unit_tests "-fcoverage-mapping")
+  target_link_libraries(unit_tests "-fprofile-instr-generate")
 endif()
 
 # GTest

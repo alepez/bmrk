@@ -16,5 +16,8 @@ target_link_libraries(${PRJ_NAME}
 )
 
 if(${TEST_COVERAGE})
-  target_link_libraries(${PRJ_NAME} "--coverage")
+  target_compile_options(${PRJ_NAME} PRIVATE "-fcoverage-mapping")
+  target_compile_options(${PRJ_NAME} PRIVATE "-fprofile-instr-generate")
+  target_link_libraries(${PRJ_NAME} "-fcoverage-mapping")
+  target_link_libraries(${PRJ_NAME} "-fprofile-instr-generate")
 endif()
