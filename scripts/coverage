@@ -1,5 +1,6 @@
 #!/bin/bash
 
 mkdir -p tmp/coverage
-LLVM_PROFILE_FILE=tmp/coverage/default.profraw make test
-llvm-profdata merge -o tmp/coverage/default.profdata tmp/coverage/default.profraw
+cd tmp/coverage
+LLVM_PROFILE_FILE=default.profraw ../../build/test/lib/unit_tests
+llvm-profdata merge -o default.profdata default.profraw
