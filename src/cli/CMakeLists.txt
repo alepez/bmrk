@@ -16,5 +16,5 @@ target_link_libraries(${PRJ_NAME}
 )
 
 if(${TEST_COVERAGE})
-	target_link_libraries(${PRJ_NAME} gcov)
+  target_link_libraries(${PRJ_NAME} "--coverage")
 endif()

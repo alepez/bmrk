@@ -11,7 +11,7 @@ target_link_libraries(unit_tests "${PRJ_NAME}-static" ${LINK_LIBS})
 target_link_libraries(unit_tests ${LINK_LIBS})
 
 if(${TEST_COVERAGE})
-  target_link_libraries(unit_tests gcov)
+  target_link_libraries(unit_tests "--coverage")
 endif()
 
 # GTest
