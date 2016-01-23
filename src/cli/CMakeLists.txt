@@ -10,8 +10,11 @@ endif()
 find_package(Boost REQUIRED COMPONENTS program_options)
 
 target_link_libraries(${PRJ_NAME}
-	${PRJ_NAME}-static
+  ${PRJ_NAME}-static
   ${LINK_LIBS}
   ${Boost_PROGRAM_OPTIONS_LIBRARY}
 )
 
+if(${TEST_COVERAGE})
+	target_link_libraries(${PRJ_NAME} gcov)
+endif()

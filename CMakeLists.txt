@@ -10,6 +10,8 @@ set(PRJ_BUILD_EXECUTABLE 1)
 set(PRJ_BUILD_STATIC_LIBRARY 1)
 set(PRJ_BUILD_SHARED_LIBRARY 0)
 
+set(TEST_COVERAGE 1)
+
 set(CXXFLAGS "-std=c++11")
 
 # How to find third party libraries

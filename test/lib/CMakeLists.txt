@@ -10,6 +10,10 @@ include_directories("." "../../src/lib")
 target_link_libraries(unit_tests "${PRJ_NAME}-static" ${LINK_LIBS})
 target_link_libraries(unit_tests ${LINK_LIBS})
 
+if(${TEST_COVERAGE})
+  target_link_libraries(unit_tests gcov)
+endif()
+
 # GTest
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})

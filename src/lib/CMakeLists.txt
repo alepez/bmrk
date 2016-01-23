@@ -10,3 +10,7 @@ endif()
 if(${PRJ_BUILD_SHARED_LIBRARY})
   add_library(${PRJ_NAME}-shared SHARED ${SOURCES})
 endif()
+
+if(${TEST_COVERAGE})
+  target_compile_options(${PRJ_NAME}-static PRIVATE "--coverage" "-g" "-O0")
+endif()
