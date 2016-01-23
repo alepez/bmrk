@@ -1,0 +1,4 @@
+#!/bin/bash
+
+make test
+llvm-profdata merge -o ./build/test/lib/default.prodata ./build/test/lib/default.profraw
