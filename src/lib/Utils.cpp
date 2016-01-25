@@ -1,8 +1,8 @@
 #include "Utils.hpp"
 
 namespace bmrk {
-
 namespace utils {
+
 String formatId(Id id) {
   String result;
   result.reserve(id.size() * 2);
@@ -13,5 +13,6 @@ String formatId(Id id) {
   }
   return result;
 }
+
 } /* utils */
 } /* bmrk  */
