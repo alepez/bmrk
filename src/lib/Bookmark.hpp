@@ -2,6 +2,7 @@
 #define BOOKMARK_HPP_4NOOTDNA
 
 #include "bmrk_fwd.hpp"
+#include "BookmarkData.hpp"
 
 namespace bmrk {
 
@@ -12,6 +13,15 @@ public:
   static Tags parseTags(const String&);
   static String formatTags(const Tags&);
 
+  template <typename D>
+  inline Bookmark(D&& data)
+      : url{data.url}
+      , title{data.title}
+      , tags{data.tags}
+      , notes{data.notes}
+      , id(Bookmark::getID(url)) {
+  }
+
   template <typename U, typename T, typename N, typename S>
   inline Bookmark(U&& aurl, T&& atitle, S&& atags, N&& anotes)
       : url{aurl}
@@ -19,8 +29,10 @@ public:
       , tags{atags}
       , notes{anotes}
       , id(Bookmark::getID(url)) {
-    // FIXME id{Bookmark::getID(url)} works with clang 3.7 but not with gcc 4.9
-    // (it wants round parens)
+  }
+
+  inline BookmarkData data() const {
+    return BookmarkData{url, title, tags, notes};
   }
 
   const Url url;
@@ -30,11 +42,6 @@ public:
 
   const Id id;
 };
-
-BookmarkPtr setUrl(BookmarkPtr, String);
-BookmarkPtr setTitle(BookmarkPtr, String);
-BookmarkPtr setTags(BookmarkPtr, Tags);
-BookmarkPtr setNotes(BookmarkPtr, String);
 
 } /* bmrk  */
 #endif /* end of include guard: BOOKMARK_HPP_4NOOTDNA */
