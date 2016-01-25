@@ -20,9 +20,4 @@ String PageParser::getTitle() const {
   return node.text();
 }
 
-String PageParser::getNotes() const {
-  // FIXME select by attribute doesn't work
-  auto&& node = doc_->find("head meta[name='description']").nodeAt(0);
-  return node.valid() ? node.text() : "";
-}
 } /* bmrk  */

@@ -23,14 +23,11 @@ public:
    * \return the page's title
    */
   String getTitle() const;
-  /**
-   * \return the page's description
-   */
-  String getNotes() const;
 
 private:
   std::shared_ptr<CDocument> doc_;
 };
 
 } /* bmrk  */
+
 #endif /* end of include guard: PAGEPARSER_HPP_GUTITDEQ */

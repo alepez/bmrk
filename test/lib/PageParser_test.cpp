@@ -22,14 +22,4 @@ TEST(PageParserTest, ThrowsWithEmptyDocument) {
   ASSERT_ANY_THROW([]() { PageParser parser{""}; }());
 }
 
-// FIXME parse description
-TEST(PageParserTest, DISABLED_CanParseDescription) {
-  String html =
-      "<html><head>"
-      "<title>This is a title</title>"
-      "<meta name=\"description\">foo bar</meta>"
-      "</head><body></body></html>";
-  PageParser parser{html};
-  ASSERT_EQ("foo bar", parser.getNotes());
-}
 } /* bmrk  */
