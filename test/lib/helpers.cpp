@@ -5,11 +5,12 @@ namespace bmrk {
 
 BookmarkPtr createMockBookmark(
     String url, String title, Tags tags, String notes) {
-	BookmarkData data;
-  if (url.empty()) data.url = "http://pezzato.net";
-  if (title.empty()) data.title = "Alessandro Pezzato";
-  if (tags.empty()) data.tags = Tags({"foo", "bar", "zee"});
-  if (notes.empty()) data.notes = "That guy who created bmrk";
+  BookmarkData data;
+  data.url = url.empty() ? "http://pezzato.net" : url;
+  data.title = title.empty() ? "Alessandro Pezzato" : title;
+  data.tags = tags.empty() ? Tags({"foo", "bar", "zee"}) : tags;
+  data.notes = notes.empty() ? "That guy who created bmrk" : notes;
   return BookmarkPtr(new Bookmark{data});
 }
+
 } /* bmrk  */
