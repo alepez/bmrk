@@ -6,6 +6,7 @@
 #include "../lib/Library.hpp"
 #include "../lib/Bookmark.hpp"
 #include "../lib/Bmrk.hpp"
+#include "../lib/Tag.hpp"
 
 namespace po = boost::program_options;
 using std::cin;
@@ -62,7 +63,7 @@ int main(int argc, char* argv[]) {
 	auto bmd = bm->data();
 
   auto title = vm.count("title") ? vm["title"].as<String>() : bmd.title;
-  auto tags = vm.count("tags") ? vm["tags"].as<String>() : Bookmark::formatTags(bmd.tags);
+  auto tags = vm.count("tags") ? vm["tags"].as<String>() : formatTags(bmd.tags);
   auto notes = vm.count("notes") ? vm["notes"].as<String>() : bmd.notes;
 
   if (vm.count("interactive")) {

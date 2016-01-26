@@ -1,6 +1,7 @@
 #include "Database.hpp"
 #include "Bookmark.hpp"
 #include "Utils.hpp"
+#include "Tag.hpp"
 
 #include <fstream>
 #include <boost/filesystem.hpp>
@@ -25,7 +26,7 @@ void Database::add(const BookmarkPtr& bookmark) {
 void Database::write(std::ostream& stream, const BookmarkPtr& bookmark) {
   stream << bookmark->url << '\n';
   stream << bookmark->title << '\n';
-  stream << Bookmark::formatTags(bookmark->tags) << '\n';
+  stream << formatTags(bookmark->tags) << '\n';
   stream << bookmark->notes << '\n';
 }
 

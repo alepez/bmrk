@@ -10,9 +10,6 @@ class Bookmark {
 public:
   static Id getID(const String& url);
 
-  static Tags parseTags(const String&);
-  static String formatTags(const Tags&);
-
   template <typename D>
   inline Bookmark(D&& data)
       : url{data.url}
@@ -35,4 +32,5 @@ public:
 };
 
 } /* bmrk  */
+
 #endif /* end of include guard: BOOKMARK_HPP_4NOOTDNA */
