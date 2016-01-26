@@ -10,7 +10,7 @@ TEST(PageDownloaderTest, ThrowsIfCannoDownloadPage) {
   ASSERT_ANY_THROW(String body = downloader.load(url).get());
 }
 
-TEST(PageDownloaderTest, CanDownloadPage) {
+TEST(PageDownloaderTest, DISABLED_CanDownloadPage) {
   String url = "http://pezzato.net";
   PageDownloader downloader;
   String body = downloader.load(url).get();
