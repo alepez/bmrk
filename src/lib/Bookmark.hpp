@@ -22,15 +22,6 @@ public:
       , id(Bookmark::getID(url)) {
   }
 
-  template <typename U, typename T, typename N, typename S>
-  inline Bookmark(U&& aurl, T&& atitle, S&& atags, N&& anotes)
-      : url{aurl}
-      , title{atitle}
-      , tags{atags}
-      , notes{anotes}
-      , id(Bookmark::getID(url)) {
-  }
-
   inline BookmarkData data() const {
     return BookmarkData{url, title, tags, notes};
   }

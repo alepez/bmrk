@@ -4,7 +4,7 @@
 
 namespace bmrk {
 
-TEST(PageDownloaderTest, ThrowsIfCannoDownloadPage) {
+TEST(PageDownloaderTest, DISABLED_ThrowsIfCannoDownloadPage) {
   String url = "http://nooo.pezzato.net";
   PageDownloader downloader;
   ASSERT_ANY_THROW(String body = downloader.load(url).get());

@@ -14,9 +14,12 @@ Bmrk::Bmrk(PageDownloaderPtr downloader, DatabasePtr db)
 
 Future<BookmarkPtr> Bmrk::createBookmarkFromUrl(const String& url) const {
   return std::async([url, this]() {
+    BookmarkData data;
     auto page = downloader_->load(url).get();
-    auto properties = PageParser(page);
-    return BookmarkPtr(new Bookmark{url, properties.getTitle(), Tags(), ""});
+    auto parser = PageParser(page);
+		data.url = url;
+		data.title = parser.getTitle();
+    return BookmarkPtr(new Bookmark{data});
   });
 }
 

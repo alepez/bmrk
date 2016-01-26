@@ -28,31 +28,4 @@ String Bookmark::formatTags(const Tags& tags) {
   return stream.str();
 }
 
-BookmarkPtr setUrl(BookmarkPtr bm, String url) {
-  auto&& title = bm->title;
-  auto&& tags = bm->tags;
-  auto&& notes = bm->notes;
-  return std::make_shared<Bookmark>(url, title, tags, notes);
-}
-
-BookmarkPtr setTitle(BookmarkPtr bm, String title) {
-  auto&& url = bm->url;
-  auto&& tags = bm->tags;
-  auto&& notes = bm->notes;
-  return std::make_shared<Bookmark>(url, title, tags, notes);
-}
-
-BookmarkPtr setTags(BookmarkPtr bm, Tags tags) {
-  auto&& url = bm->url;
-  auto&& title = bm->title;
-  auto&& notes = bm->notes;
-  return std::make_shared<Bookmark>(url, title, tags, notes);
-}
-
-BookmarkPtr setNotes(BookmarkPtr bm, String notes) {
-  auto&& url = bm->url;
-  auto&& title = bm->title;
-  auto&& tags = bm->tags;
-  return std::make_shared<Bookmark>(url, title, tags, notes);
-}
 } /* bmrk  */
