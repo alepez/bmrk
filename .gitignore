@@ -2,3 +2,5 @@
 /deps
 /tmp
 .tmp
+*.profraw
+*.profdata

@@ -10,7 +10,7 @@ set(PRJ_BUILD_EXECUTABLE 1)
 set(PRJ_BUILD_STATIC_LIBRARY 1)
 set(PRJ_BUILD_SHARED_LIBRARY 0)
 
-set(TEST_COVERAGE 0)
+option(TEST_COVERAGE "Build with llvm-cov support" 0)
 
 set(CXXFLAGS "-std=c++11")
 
