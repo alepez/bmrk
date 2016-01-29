@@ -26,15 +26,22 @@ struct BmrkTest : public testing::Test {
   // FIXME use a mock database
   Config config{{{"root", "tmp/db"}}};
   DatabasePtr db = std::make_shared<Database>(config);
-  Bmrk bmrk{dwl("<html><head>"
-                "<title>ciao</title>"
-                "</head><body>"
-                "</body></html>"),
-      db};
+  std::string html =
+      "<html><head>"
+      "<title>ciao</title>"
+      "</head><body>"
+      "</body></html>";
+  Bmrk bmrk{dwl(html), db};
 };
 
 TEST_F(BmrkTest, CanGetBookmarkFromUrl) {
   auto bookmark = bmrk.createBookmarkFromUrl("http://pezzato.net").get();
   ASSERT_EQ("ciao", bookmark->title);
 }
+
+TEST_F(BmrkTest, CanAddBookmark) {
+  auto bookmark = bmrk.createBookmarkFromUrl("http://pezzato.net").get();
+  bmrk.add(bookmark);
+}
+
 } /* bmrk  */

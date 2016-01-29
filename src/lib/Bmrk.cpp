@@ -17,8 +17,8 @@ Future<BookmarkPtr> Bmrk::createBookmarkFromUrl(const String& url) const {
     BookmarkData data;
     auto page = downloader_->load(url).get();
     auto parser = PageParser(page);
-		data.url = url;
-		data.title = parser.getTitle();
+    data.url = url;
+    data.title = parser.getTitle();
     return BookmarkPtr(new Bookmark{data});
   });
 }
@@ -26,4 +26,5 @@ Future<BookmarkPtr> Bmrk::createBookmarkFromUrl(const String& url) const {
 void Bmrk::add(BookmarkPtr bookmark) {
   library_->add(bookmark);
 }
+
 } /* bmrk  */
