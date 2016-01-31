@@ -13,7 +13,9 @@ namespace fs = boost::filesystem;
 static String setupDirectory(const String&);
 
 Database::Database(const Config& config)
-    : root_{setupDirectory(config.at("root"))} {
+    : root_{setupDirectory(config.at("root"))}
+    , serializer_(new BookmarkSerializer)
+    , deserializer_(new BookmarkDeserializer) {
 }
 
 void Database::add(const BookmarkPtr& bookmark) {
