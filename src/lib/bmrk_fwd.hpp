@@ -17,6 +17,7 @@ class Database;
 class PageDownloader;
 class PageParser;
 class Library;
+class BookmarkSerializer;
 
 using Url = std::string;
 using Title = std::string;

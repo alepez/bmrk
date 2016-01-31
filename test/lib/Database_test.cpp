@@ -27,14 +27,6 @@ TEST_F(DatabaseTest, GetPath) {
       db.getPath(*bookmark));
 }
 
-TEST_F(DatabaseTest, CanWriteBookmark) {
-  auto bookmark = createMockBookmark(
-      "http://pezzato.net", "one", Tags({"foo", "bar"}), "two");
-  std::stringstream stream;
-  db.write(stream, bookmark);
-  ASSERT_EQ("http://pezzato.net\none\nfoo,bar\ntwo\n", stream.str());
-}
-
 TEST_F(DatabaseTest, CanAddBookmark) {
   auto bookmark = createMockBookmark("http://pezzato.net");
   db.add(bookmark);

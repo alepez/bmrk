@@ -2,6 +2,7 @@
 #define DATABASE_HPP_AR2QUN8L
 
 #include "bmrk_fwd.hpp"
+#include "BookmarkSerializer.hpp"
 
 namespace bmrk {
 
@@ -22,14 +23,13 @@ public:
 
   String getAbsolutePath(const String&);
 
-  void write(std::ostream&, const BookmarkPtr&);
-
   BookmarkPtr read(std::istream&) const;
 
   void clear();
 
 private:
   const String root_;
+	const std::unique_ptr<BookmarkSerializer> serializer_;
 };
 
 } /* bmrk  */

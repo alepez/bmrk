@@ -20,18 +20,11 @@ void Database::add(const BookmarkPtr& bookmark) {
   auto path = this->getAbsolutePath(this->getPath(*bookmark));
   fs::create_directories(fs::path(path).parent_path());
   std::ofstream file{path};
-  this->write(file, bookmark);
-}
-
-void Database::write(std::ostream& stream, const BookmarkPtr& bookmark) {
-  stream << bookmark->url << '\n';
-  stream << bookmark->title << '\n';
-  stream << formatTags(bookmark->tags) << '\n';
-  stream << bookmark->notes << '\n';
+	serializer_->serialize(&file, bookmark);
 }
 
 BookmarkPtr Database::read(std::istream& stream) const {
-	BookmarkData data;
+  BookmarkData data;
   String url, title, notes, buf;
   Tags tags;
   std::getline(stream, data.url);
@@ -102,4 +95,5 @@ void Database::clear() {
     fs::remove_all(*it);
   }
 }
+
 } /* bmrk  */
