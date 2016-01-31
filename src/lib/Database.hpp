@@ -3,6 +3,7 @@
 
 #include "bmrk_fwd.hpp"
 #include "BookmarkSerializer.hpp"
+#include "BookmarkDeserializer.hpp"
 
 namespace bmrk {
 
@@ -23,13 +24,12 @@ public:
 
   String getAbsolutePath(const String&);
 
-  BookmarkPtr read(std::istream&) const;
-
   void clear();
 
 private:
   const String root_;
 	const std::unique_ptr<BookmarkSerializer> serializer_;
+	const std::unique_ptr<BookmarkDeserializer> deserializer_;
 };
 
 } /* bmrk  */

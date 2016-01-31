@@ -20,25 +20,7 @@ void Database::add(const BookmarkPtr& bookmark) {
   auto path = this->getAbsolutePath(this->getPath(*bookmark));
   fs::create_directories(fs::path(path).parent_path());
   std::ofstream file{path};
-	serializer_->serialize(&file, bookmark);
-}
-
-BookmarkPtr Database::read(std::istream& stream) const {
-  BookmarkData data;
-  String url, title, notes, buf;
-  Tags tags;
-  std::getline(stream, data.url);
-  std::getline(stream, data.title);
-
-  /* tags */
-  std::getline(stream, buf);
-
-  /* notes */
-  while (std::getline(stream, buf)) {
-    data.notes += buf;
-  }
-
-  return std::make_shared<Bookmark>(data);
+  serializer_->serialize(&file, bookmark);
 }
 
 void Database::remove(const BookmarkPtr& bookmark) {
@@ -64,7 +46,7 @@ Bookmarks Database::getAllBookmarks() const {
   recursiveFindBookmarkFiles(bookmarkFiles, fs::path(root_));
   for (auto&& f : bookmarkFiles) {
     std::ifstream file{f};
-    bookmarks.push_back(this->read(file));
+    bookmarks.push_back(deserializer_->deserialize(&file));
   }
   return bookmarks;
 }
