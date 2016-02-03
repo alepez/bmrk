@@ -14,12 +14,10 @@ void Library::add(BookmarkPtr bookmark) {
 
 void Library::remove(BookmarkPtr bookmark) {
   // TODO find a more efficient algorithm
-	// TODO needs unit test
   bookmarks_.erase(
       std::remove_if(bookmarks_.begin(), bookmarks_.end(),
           [bookmark](const BookmarkPtr& b) { return b->id == bookmark->id; }),
       bookmarks_.end());
-  bookmarks_.push_back(bookmark);
   if (db_) {
     db_->remove(bookmark);
   }
