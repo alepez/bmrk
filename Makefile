@@ -14,5 +14,5 @@ test: all
 .PHONY: test
 
 distclean:
-	@rm -rf build/*
+	@rm -rf build/*  tmp/* default.profdata default.profraw
 .PHONY: distclean

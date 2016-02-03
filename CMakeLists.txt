@@ -34,6 +34,20 @@ set(LINK_LIBS
 	${Boost_SYSTEM_LIBRARY}
 )
 
+set(TEST_COVERAGE_COMPILE_OPTIONS
+  "-g"
+  "-O0"
+  "-fcoverage-mapping"
+  "-fprofile-instr-generate"
+  "-fprofile-arcs"
+  "-ftest-coverage"
+)
+
+set(TEST_COVERAGE_LINKER_OPTIONS
+  "-fcoverage-mapping"
+  "-fprofile-instr-generate"
+)
+
 # Subdirectories
 add_subdirectory(src/lib)
 add_subdirectory(test/lib)

@@ -17,11 +17,8 @@ target_link_libraries(${PRJ_NAME}
 
 if(${TEST_COVERAGE})
   if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    target_compile_options(${PRJ_NAME} PRIVATE "-g" "-O0")
-    target_compile_options(${PRJ_NAME} PRIVATE "-fcoverage-mapping")
-    target_compile_options(${PRJ_NAME} PRIVATE "-fprofile-instr-generate")
-    target_link_libraries(${PRJ_NAME} "-fcoverage-mapping")
-    target_link_libraries(${PRJ_NAME} "-fprofile-instr-generate")
+    target_compile_options(${PRJ_NAME} PRIVATE ${TEST_COVERAGE_COMPILE_OPTIONS})
+    target_link_libraries(${PRJ_NAME} ${TEST_COVERAGE_LINKER_OPTIONS})
   else()
     message(WARNING "Clang is needed for test coverage.")
   endif()
