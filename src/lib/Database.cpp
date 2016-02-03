@@ -30,8 +30,7 @@ void Database::remove(const BookmarkPtr& bookmark) {
   fs::remove(fs::path(path));
 }
 
-template <typename B, typename T>
-void recursiveFindBookmarkFiles(B& bookmarks, T dir) {
+void recursiveFindBookmarkFiles(std::vector<String>& bookmarks, const fs::path& dir) {
   fs::directory_iterator end;
   for (fs::directory_iterator it(dir); it != end; ++it) {
     if (fs::is_directory(*it)) {
