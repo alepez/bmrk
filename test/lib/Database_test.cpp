@@ -46,4 +46,10 @@ TEST_F(DatabaseTest, CanClear) {
   db.clear();
   ASSERT_EQ(0u, db.getAllBookmarks().size());
 }
+
+TEST(DatabaseWithWrongDirectoryTest, ThrowsIfCannotCreateDirectory) {
+  Config config{{"root", "/this_directory_does_not_exist/db"}};
+  ASSERT_ANY_THROW(Database db{config};);
+}
+
 } /* bmrk  */

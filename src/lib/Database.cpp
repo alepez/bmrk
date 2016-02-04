@@ -30,7 +30,8 @@ void Database::remove(const BookmarkPtr& bookmark) {
   fs::remove(fs::path(path));
 }
 
-void recursiveFindBookmarkFiles(std::vector<String>& bookmarks, const fs::path& dir) {
+void recursiveFindBookmarkFiles(
+    std::vector<String>& bookmarks, const fs::path& dir) {
   fs::directory_iterator end;
   for (fs::directory_iterator it(dir); it != end; ++it) {
     if (fs::is_directory(*it)) {
@@ -64,9 +65,7 @@ String Database::getAbsolutePath(const String& path) {
 String setupDirectory(const String& rootPath) {
   fs::path root{rootPath};
   if (!fs::exists(root)) {
-    if (!fs::create_directories(root)) {
-      throw Error{"Cannot create database directory!"};
-    }
+    fs::create_directories(root);
   }
   return fs::canonical(root).string<String>();
 }
