@@ -19,14 +19,14 @@ Database::Database(const Config& config)
 }
 
 void Database::add(const BookmarkPtr& bookmark) {
-  auto path = this->getAbsolutePath(this->getPath(*bookmark));
+  auto path = this->getAbsolutePath(this->getPath(bookmark->id));
   fs::create_directories(fs::path(path).parent_path());
   std::ofstream file{path};
   serializer_->serialize(&file, bookmark);
 }
 
 void Database::remove(const BookmarkPtr& bookmark) {
-  auto path = this->getAbsolutePath(this->getPath(*bookmark));
+  auto path = this->getAbsolutePath(this->getPath(bookmark->id));
   fs::remove(fs::path(path));
 }
 
@@ -53,9 +53,9 @@ Bookmarks Database::getAllBookmarks() const {
   return bookmarks;
 }
 
-String Database::getPath(const Bookmark& bookmark) {
-  auto&& id = utils::formatId(bookmark.id);
-  return "bookmarks/" + id.substr(0, 2) + "/" + id.substr(2, 2) + "/" + id;
+String Database::getPath(const UUID& uuid) {
+  auto&& idStr = formatUUID(uuid);
+  return "bookmarks/" + idStr.substr(0, 2) + "/" + idStr.substr(2, 2) + "/" + idStr;
 }
 
 String Database::getAbsolutePath(const String& path) {

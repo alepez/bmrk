@@ -10,9 +10,9 @@ struct DatabaseTest : public testing::Test {
   Config config{{"root", "tmp/db"}};
   Database db{config};
   void SetUp() {
+    db.clear();
   }
   void TearDown() {
-    db.clear();
   }
 };
 
@@ -22,9 +22,10 @@ TEST_F(DatabaseTest, DISABLED_GetAbsPath) {
 }
 
 TEST_F(DatabaseTest, GetPath) {
-  auto bookmark = createMockBookmark("http://pezzato.net");
-  ASSERT_EQ("bookmarks/65/1d/651db60812a5fff04e5b33ec7384a220da2cee2c",
-      db.getPath(*bookmark));
+  UUID uuid{{0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b,
+      0x0c, 0x0d, 0x0e, 0x0f, 0x10}};
+  ASSERT_EQ(
+      "bookmarks/01/02/0102030405060708090a0b0c0d0e0f10", db.getPath(uuid));
 }
 
 TEST_F(DatabaseTest, CanAddBookmark) {

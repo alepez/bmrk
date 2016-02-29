@@ -20,7 +20,7 @@ public:
 
   Bookmarks getAllBookmarks() const;
 
-  String getPath(const Bookmark&);
+  String getPath(const UUID&);
 
   String getAbsolutePath(const String&);
 

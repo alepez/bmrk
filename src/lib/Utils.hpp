@@ -6,8 +6,6 @@
 namespace bmrk {
 namespace utils {
 
-String formatId(Id);
-
 } /* utils */
 } /* bmrk  */
 

@@ -22,7 +22,7 @@ class BookmarkSerializer;
 using Url = std::string;
 using Title = std::string;
 using Notes = std::string;
-using Id = std::array<uint8_t, 20>;
+using UUID = std::array<uint8_t, 16>;
 using LibraryPtr = std::shared_ptr<Library>;
 using DatabasePtr = std::shared_ptr<Database>;
 using BookmarkPtr = std::shared_ptr<const Bookmark>;

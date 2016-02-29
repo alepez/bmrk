@@ -3,12 +3,12 @@
 
 #include "bmrk_fwd.hpp"
 #include "BookmarkData.hpp"
+#include "UUID.hpp"
 
 namespace bmrk {
 
 class Bookmark {
 public:
-  static Id getID(const String& url);
 
   template <typename D>
   inline Bookmark(D&& data)
@@ -16,7 +16,7 @@ public:
       , title{data.title}
       , tags{data.tags}
       , notes{data.notes}
-      , id(Bookmark::getID(url)) {
+      , id(makeUUID()) {
   }
 
   inline BookmarkData data() const {
@@ -28,7 +28,7 @@ public:
   const Tags tags;
   const Notes notes;
 
-  const Id id;
+  const UUID id;
 };
 
 } /* bmrk  */
